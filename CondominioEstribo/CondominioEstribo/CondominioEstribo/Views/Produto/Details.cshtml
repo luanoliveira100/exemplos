@@ -1,0 +1,62 @@
+﻿@model CondominioEstribo.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes Do Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Detalhes Do Produto</h2>
+        <br />
+        <br />
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Produto:</b></h4>
+                </dt>
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.NomeProduto)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Descrição:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Descricao)</h4>
+                </dd>
+                <dt>
+                    <h4><b>Qtde. Atual:</b></h4>
+                </dt>
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.QuantidadeAtual)</h4>
+                </dd>
+                <dt>
+                    <h4><b>Qtde. Segurança:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.QuantidadeMinima)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Observação:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Observacao)</h4>
+                </dd>
+            </dl>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.ProdutoId }, new { @class = "btn btn-warning" })
+        </div>
+    </div>
+</div>
+<br />

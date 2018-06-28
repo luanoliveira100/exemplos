@@ -1,0 +1,79 @@
+﻿@model CondominioEstribo.Models.EntradaMercadoria
+
+@{
+    ViewBag.Title = "Detalhes Da Entrada De Mercadoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes Da Entrada De Mercadoria</h2>
+
+<br />
+<br />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <h5><b>Produto:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.ProdutoEntradaMercadoria)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Fornecedor:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.FornecedorEntradaMercadoria)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Quantidade:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.QuantidadeInserida)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Valor Da Nota Fiscal:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.ValorTotalDaNF)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Data Da Entrada:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.DataDaEntrada)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Observação:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Observacao)</h5>
+        </dd>
+
+    </dl>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-md-1">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.EntradaMercadoriaId }, new { @class = "btn btn-warning" })
+
+    </div>
+    <div class="col-md-1">
+        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+    </div>
+</div>
+
+
+<br />

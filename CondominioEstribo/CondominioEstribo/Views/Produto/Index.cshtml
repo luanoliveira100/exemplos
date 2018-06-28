@@ -1,0 +1,145 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Produto>
+
+@{
+    ViewBag.Title = "Lista De Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtProduto").autocomplete({
+            source: '@Url.Action("GetProduto")'
+        });
+    });
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+           // dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+
+<br />
+<br />
+<div class="container"> 
+    <div class="well">
+        <h2>Lista De Produtos</h2>
+        <br />
+        <br />
+        @using (Html.BeginForm("Index", "Produto", FormMethod.Post))
+        {            
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.Label("lblProduto", " Insira o Produto*", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("produto", null, new { id = "txtProduto", @class = "form-control", placeholder = "Informe o Produto" })
+                    </div>
+                </div>
+
+                @*<div class="col-md-3">
+                    @Html.TextBox("txtProduto", "", new { @class = "form-control", placeholder = "Informe o Produto", autofocus = "autofocus", tabindex = "1" })
+                </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+
+                @*<div class="col-md-0">
+                    <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                    @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+                </div>*@
+            </div>
+        }
+
+        <br />
+        @if (Model.Count() != 0)
+        {           
+            <table cellspacing="2" cellpadding="2" border="1" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Produto
+                        </th>
+                        <th>
+                            Descrição
+                        </th>
+                        <th>
+                            Quantidade Atual
+                        </th>
+                        <th>
+                            Margem De Segurança
+                        </th>
+                        <th>
+                            Observação
+                        </th>
+                        <th>
+                            Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="active">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeProduto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descricao)
+                            </td>
+                            @if (item.QuantidadeAtual < item.QuantidadeMinima)
+                            {
+                                <td>
+                                    <b style="color:red">@Html.DisplayFor(modelItem => item.QuantidadeAtual)</b>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QuantidadeAtual)
+                                </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QuantidadeMinima)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Observacao)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "Details", new { id = item.ProdutoId }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Alterar", "Edit", new { id = item.ProdutoId }, new { @class = "btn btn-warning btn-xs" })
+                                @*<button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Excluir este Produto ?', '@Url.Action("DeletarProduto","Produto", new { id = item.ProdutoId})')">Excluir</button>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        
+        <br />
+        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<br />
+<br />

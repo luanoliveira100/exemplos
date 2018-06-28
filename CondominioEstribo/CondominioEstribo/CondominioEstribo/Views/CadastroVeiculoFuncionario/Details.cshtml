@@ -1,0 +1,46 @@
+﻿@model CondominioEstribo.Models.CadastroVeiculoFuncionario
+
+@{
+    ViewBag.Title = "Detalhes Do Veículo De Funcionário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Detalhes Do Veículo De Funcionário</h2>
+
+        <br />
+        <br />
+
+        <div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Funcionário:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.NomeDoFuncionario)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Placa Do Veículo:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.PlacaVeiculoFuncionario)</h4>
+                </dd>
+            </dl>
+        </div>
+        <br />
+
+        <div class="form-group">
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.CadastroVeiculoFuncionarioId }, new { @class = "btn btn-warning" })
+        </div>
+        <br />
+    </div>
+</div>

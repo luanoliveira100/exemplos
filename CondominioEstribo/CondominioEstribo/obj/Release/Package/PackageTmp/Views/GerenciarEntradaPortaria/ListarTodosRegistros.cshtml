@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CondominioEstribo.Models.GerenciarEntradaPortaria>
+
+@{
+    ViewBag.Title = "Lista De Todos os Registros De Pessoas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista De Todos os Registros De Pessoas</h2>
+
+<br />
+<br />
+
+@using (Html.BeginForm("ListarTodosRegistros", "GerenciarEntradaPortaria", FormMethod.Post))
+{
+    <p><b>Buscar por Entrada / Saída</b></p>
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            @*@Html.TextBox("txtNome", "", new { @class = "form-control", placeholder = "Informe o Nome", autofocus = "autofocus", tabindex = "1" })*@
+            @Html.DropDownList("DropStatus", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Entrada", Value = "Entrada"},
+                            new SelectListItem{ Text = "Saída", Value = "Saída"},
+                                }, "--Selecione a Busca--", new { @class = "form-control" })
+        </div>
+        <div class="col-md-0">
+            <button type="submit" class="btn btn-primary" tabindex="2">Pesquisar</button>
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })         
+        </div>
+
+
+    </div>
+}
+
+
+
+<div class="col-md-12">
+    
+</div>
+
+
+
+
+
+<br />
+
+@*<fieldset>
+    <div class="well">*@
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        RG
+                    </th>
+                    <th>
+                        Data Da Entrada
+                    </th>
+                    <th>
+                        Data Da Saída
+                    </th>
+                    <th>
+                        Placa Do Veículo
+                    </th>
+                    @*<th>
+                        Telefone De Contato
+                    </th>*@
+                    @*<th>
+                    @Html.DisplayNameFor(model => model.FlagParaControle)
+                    </th>*@
+                    <th>
+                        Obervação
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataHoraEntrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataHoraSaida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlacaDoVeiculo)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.TelefoneContato)
+                    </td>*@
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.FlagParaControle)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observacao)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalhes", "DetalheTodosRegistros", new { id = item.GerenciarEntradaPortariaId }, new { @class = "btn btn-info btn-xs" })                                            
+                        <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Excluir este Registro ?     O mesmo não irá mais conter em seu Banco de Dados !!', '@Url.Action("DeletarRegistro","GerenciarEntradaPortaria", new { id = item.GerenciarEntradaPortariaId})')">Excluir</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    @*</div>
+</fieldset>*@
+
+<br />
+
+@Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+
+<br />
+<br />

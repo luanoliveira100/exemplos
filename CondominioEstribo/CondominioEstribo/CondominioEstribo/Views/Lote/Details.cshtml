@@ -1,0 +1,51 @@
+﻿@model CondominioEstribo.Models.Lote
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroLote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroLote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProprietario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeProprietario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaConstruida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaConstruida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LoteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

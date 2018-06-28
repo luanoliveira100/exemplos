@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CondominioEstribo.Models.CadastroVeiculoFuncionario>
+
+@{
+    ViewBag.Title = "Lista De Veículo De Funcionário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Lista De Veículo De Funcionário</h2>
+        <br />
+        <br />
+        @using (Html.BeginForm("Index", "CadastroVeiculoFuncionario", FormMethod.Post))
+        {
+            <p><b>Buscar por Placa</b></p>
+            <div class="form-horizontal">
+                <div class="col-md-3">
+                    @Html.TextBox("txtNome", "", new { @class = "form-control", placeholder = "Informe o Nome do Funcionário", autofocus = "autofocus", tabindex = "1" })
+                </div>
+                <div class="col-md-0">
+                    <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                    @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary", tabindex = "3" })
+                </div>
+
+
+            </div>
+        }
+
+        <br />
+        <div class="alert alert-dismissible alert-info col-md-9">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Para mais Informações click em Detalhes.</strong>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nome Do Funcionário
+                    </th>
+                    <th>
+                        Placa Do Veículo
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr class="active">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeDoFuncionario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlacaVeiculoFuncionario)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.CadastroVeiculoFuncionarioId }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Alterar", "Edit", new { id = item.CadastroVeiculoFuncionarioId }, new { @class = "btn btn-warning btn-xs" })
+                        <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Excluir o Veículo deste Funcionário ?', '@Url.Action("DeletarVeiculoFuncionario","CadastroVeiculoFuncionario", new { id = item.CadastroVeiculoFuncionarioId})')">Excluir</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CondominioEstribo.Models.NotaFiscalItens>
+
+<link href="~/content/datatables/css/jquery.datatables.min.css" rel="stylesheet" />
+<script src="~/scripts/datatables/jquery.datatables.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Itens</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2">Quantidade</label>
+        <div class="col-md-10">
+            <input type="number" id="Quantidade" name="Quantidade" class="form-control"  />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <label class="control-label col-md-2">Produto</label>
+        <div class="col-md-10">
+            <input type="text" id="Produto" name="Produto"/>
+        </div>
+    </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2">Valor Unitário</label>
+        <div class="col-md-10">
+            <input type="number" id="ValorUnitario" name="ValorUnitario" class="form-control" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("lblProduto", "Produto*", new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+            @Html.DropDownList("DropProduto", (List<SelectListItem>)ViewBag.Produto, "--Selecione--", new { @class = "form-control", id = "Produto", name = "Produto" })
+        </div>
+    </div> 
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="#" onclick="SalvarItens()" class="btn btn-success">Gravar Itens</a>
+            </div>
+        </div>
+
+
+
+
+    </div>
+<input type="hidden" id="idPedido" value="@ViewBag.Pedido" />
+<table class="table" cellspacing="2" cellpadding="2" border="1" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto.NomeProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorUnitartio)
+            </th>
+            <th>
+                Excluir Itens
+            </th>
+        </tr>
+    </thead>
+  
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produto.NomeProduto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorUnitartio)
+                    </td>
+                    <td>
+                        <a href="#" onclick="ExcluirItem(@item.Id , @item.notaFiscal.Id, @item.Quantidade)"; class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+   
+</table>
+}

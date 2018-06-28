@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Ocorrencia>
+
+@{
+    ViewBag.Title = "Lista De Ocorrências Em Aberto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista De Ocorrências Em Aberto</h2>
+
+<br />
+<br />
+
+@using (Html.BeginForm("Index", "Ocorrencia", FormMethod.Post))
+{
+    <p><b>Buscar por ??? </b></p>
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            @Html.TextBox("txt", "", new { @class = "form-control", placeholder = "Informe a ?????", autofocus = "autofocus", tabindex = "1" })
+        </div>
+        <div class="col-md-0">
+            <button type="submit" class="btn btn-primary" tabindex="2">Pesquisar</button>
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+        </div>
+
+
+    </div>
+}
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Tipo Da Ocorrência
+        </th>
+        <th>
+            Descrição
+        </th>     
+        <th>
+            Data
+        </th>   
+        <th>
+            Condômino
+        </th>
+        <th>
+            Lote
+        </th>
+        <th>
+            Situação
+        </th>       
+        @*<th>
+            @Html.DisplayNameFor(model => model.Desfecho)
+        </th>*@
+       
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="active">
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataOcorrencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondominoRegistroOcorrencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoteRegistroOcorrencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Situacao)
+        </td>        
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Desfecho)
+        </td>*@     
+        <td>
+            @Html.ActionLink("Detalhes", "Details", new { id = item.OcorrenciaId }, new { @class = "btn btn-info btn-xs" })            
+            @*@Html.ActionLink("Finalizar", "Edit", new { id = item.OcorrenciaId }, new { @class = "btn btn-danger btn-xs" })*@            
+            <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Finalizar esta Ocorrência ?', '@Url.Action("Edit","Ocorrencia", new { id = item.OcorrenciaId })')">Finalizar</button>
+        </td>
+    </tr>
+}
+
+</table>

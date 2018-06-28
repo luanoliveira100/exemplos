@@ -1,0 +1,73 @@
+﻿@model CondominioEstribo.Models.Obra
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Obra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoObra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescricaoObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescricaoObra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusObra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorObra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicioObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioObra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataTerminoObra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataTerminoObra)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

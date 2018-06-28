@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Import", "Contas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <h3>arquivo excel</h3>
+
+        <div class="well">
+            <div class="form-group" >
+                @Html.Label("lblExcel", " insira o arquivo*", new { @class = "control-label col-md-2" })
+                <input type="file" name="excelfile" style="width:300px">
+                <h3>@Html.Raw(ViewBag.Error)</h3>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("lblMes", " digite o mes*", new { @class = "control-label col-md-2" })
+                <input type="month" name="mes" class="form-control">
+            </div>
+
+
+
+
+
+            <div>
+                <input type="submit" value="Enviar" />
+            </div>
+           
+        </div>
+    }
+    <div>
+    </div>
+</body>
+</html>
+

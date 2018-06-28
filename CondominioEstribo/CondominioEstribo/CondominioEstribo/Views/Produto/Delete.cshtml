@@ -1,0 +1,69 @@
+﻿@model CondominioEstribo.Models.Produto
+
+@{
+    ViewBag.Title = "Excluir Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Produto</h2>
+
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProduto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantidadeMinima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantidadeMinima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantidadeAtual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantidadeAtual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+
+    <h3>Deseja realmente excluir este Produto ?</h3>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-1">
+                <input type="submit" value="Excluir" class="btn btn-primary" />
+            </div>
+            <div class="col-md-offset-1">
+                <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+    }
+</div>

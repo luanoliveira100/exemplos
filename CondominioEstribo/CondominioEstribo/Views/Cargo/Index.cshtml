@@ -1,0 +1,100 @@
+﻿'@model IEnumerable<CondominioEstribo.Models.Cargo>
+
+@{
+    ViewBag.Title = "Lista De Cargos Ativos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Lista De Cargos Ativos</h2>
+
+        <br />
+        <br />
+
+            @*@using (Html.BeginForm("Index", "Cargo", FormMethod.Post))
+            {
+                <p><b>Buscar por Cargo</b></p>
+                <div class="form-horizontal">
+                    <div class="col-md-3">
+                        @Html.TextBox("txtNomeCargo", "", new { @class = "form-control", placeholder = "Informe o Cargo", autofocus = "autofocus", tabindex = "1" })
+                    </div>
+                    <div class="col-md-0">
+                        <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary", tabindex = "3" })
+                    </div>
+                </div>
+            }
+            <br />*@
+
+        @*<div class="alert alert-dismissible alert-info col-md-9">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Para mais Informações click em Detalhes.</strong>
+        </div>*@
+        <table cellspacing="2" cellpadding="2" border="1" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Cargo
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Observação
+                    </th>
+                    <th>
+                        Ações
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr class="active">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeCargo)
+                        </td>
+                        <td>
+                            <b style="color:darkblue">@Html.DisplayFor(modelItem => item.FlagStatus)</b>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observacao)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.CargoId }, new { @class = "btn btn-info btn-xs" })
+                            @Html.ActionLink("Alterar", "Edit", new { id = item.CargoId }, new { @class = "btn btn-warning btn-xs" })
+                            <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Inativar este Cargo ?', '@Url.Action("InativarCargo","Cargo", new { id = item.CargoId})')">Inativar</button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>    
+        <br />
+        @Html.ActionLink("Listar Inativos", "ListarTodosCargos", "", new { @class = "btn btn-primary" })
+        <br />
+        <br />
+
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

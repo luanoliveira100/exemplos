@@ -1,0 +1,60 @@
+﻿@model CondominioEstribo.Models.Lote
+
+@{
+    ViewBag.Title = "Excluir Lote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Lote</h2>
+
+<br />
+
+
+<div>
+    <h4>Lote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroLote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroLote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaConstruida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaConstruida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+
+    <h3>Deseja realmente excluir este Lote ?</h3>
+
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-1">
+                <input type="submit" value="Sim" class="btn btn-default" /> 
+            </div> 
+            <div class="col-md-offset-1 ">
+                <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+            </div>                         
+
+        </div>
+    }
+</div>

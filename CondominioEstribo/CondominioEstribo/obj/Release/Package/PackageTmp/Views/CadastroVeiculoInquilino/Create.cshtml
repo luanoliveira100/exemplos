@@ -1,0 +1,101 @@
+﻿@model CondominioEstribo.Models.CadastroVeiculoInquilino
+
+@{
+    ViewBag.Title = "Cadastro De Veículo De Inquilino";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <div class="row">
+        
+        <h2>Cadastro De Veículo De Inquilino</h2>
+
+        <br />
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-4">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NomeDoInquilino, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.NomeDoInquilino, new { htmlAttributes = new { @class = "form-control", required = "true", tabindex = "1", autofocus = "autofocus", placeholder = "Informe o Nome" } })
+                                @Html.ValidationMessageFor(model => model.NomeDoInquilino, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <div class="col-md-1">
+                            <input type="submit" value="Gravar" class="btn btn-success" tabindex="4" />
+                        </div>
+                        <div class="col-md-offset-4">
+                            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-horizontal">
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PlacaVeiculoInquilino, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.PlacaVeiculoInquilino, new { htmlAttributes = new { @class = "form-control", required = "true", tabindex = "2", placeholder = "Informe a Placa do Veículo" } })
+                                @Html.ValidationMessageFor(model => model.PlacaVeiculoInquilino, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+                
+
+
+                
+            }
+        
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+ 
+        
+
+        
+
+        
+
+      
+    
+
+
+

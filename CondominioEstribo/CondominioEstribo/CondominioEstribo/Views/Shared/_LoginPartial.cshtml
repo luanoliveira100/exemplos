@@ -1,0 +1,18 @@
+﻿
+<!-- Vai mostrar nome de usuário e Login ou Logoff na barra -->
+<!-- se o usuário estiver ou não logado -->
+@if (Session["Nome"] != null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(Session["Nome"].ToString(), "", "", new { }, null)</li>
+        @*<li>@Html.ActionLink("Sair", "Logout", "Account")</li>*@
+        <li><a href="@Url.Action("Logout", "Account")"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right ">
+        @*<li>@Html.ActionLink("Entrar", "Login", "Account")</li>*@
+        <li><a href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+    </ul>
+}

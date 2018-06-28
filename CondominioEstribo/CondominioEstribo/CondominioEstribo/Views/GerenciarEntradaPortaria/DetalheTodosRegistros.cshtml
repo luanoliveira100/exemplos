@@ -1,0 +1,96 @@
+﻿@model CondominioEstribo.Models.GerenciarEntradaPortaria
+
+@{
+    ViewBag.Title = "Detalhes De Registro De Pessoas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Detalhes Do Registro De Pessoas</h2>
+        <br />
+        <br />
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Nome:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Nome)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>RG:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.RG)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data Da Entrada:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DataHoraEntrada)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data Da Saída:</b></h4>
+                </dt>
+
+                <dd>
+                    @if (Model.FlagParaControle.Equals("Entrada"))
+                    {
+                        <h4>Saída ainda não Registrada</h4>
+                    }
+                    else
+                    {
+                        <h4>@Html.DisplayFor(model => model.DataHoraSaida)</h4>
+                    }                    
+                </dd>
+
+                <dt>
+                    <h4><b>Placa Do Veículo:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.PlacaDoVeiculo)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Telefone:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.TelefoneContato)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Status:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.FlagParaControle)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Observação:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Observacao)</h4>
+                </dd>
+            </dl>
+        </div>
+        <br />
+
+        <div class="form-group">
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+        </div>
+
+    </div>
+</div>
+<br />

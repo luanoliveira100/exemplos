@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "relatorioDetalhado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (@Html.BeginForm("relatorioDetalhado", "Contas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <h3>arquivo excel</h3>
+
+        <div class="well">
+            <div class="form-group">
+                <label> digite o mes </label>
+                <input type="month" name="mes" required>
+            </div>
+
+
+            <input type="submit" value="Enviar" />
+        </div>
+}
+

@@ -1,0 +1,210 @@
+﻿@model CondominioEstribo.Models.Fornecedor
+
+@{
+    ViewBag.Title = "Cadastro De Fornecedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Cadastro De Fornecedor</h2>
+        <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeEmpresa, htmlAttributes: new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NomeEmpresa, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Nome da Empresa", required = "true", autofocus = "autofocus", tabindex = "1" } })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.Label("lblTexto", "Escolha a Opção Abaixo", new { @class = "control-label col-md-2" })
+                        <div class="row">
+                            
+                                
+                                <div class="col-md-3">
+                                    @Html.Label("lblCPF", "CPF*", new { @class = "control-label " })
+                                    @Html.RadioButton("rbrEscolha", "CPF", new { htmlAtrributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.Label("lblCNPJ", "CNPJ*", new { @class = "control-label col-md-2 " })
+                                    @Html.RadioButton("rbrEscolha", "CNPJ", new { htmlAtrributes = new { @class = "form-control" } })
+                                </div>                              
+                                
+                            
+                        </div>
+                    </div>*@                                                                                      
+                                          
+
+                   
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CNPJ_CPF, htmlAttributes: new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CNPJ_CPF, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o CNPJ", required = "true", tabindex = "2", onkeyup = "formataCNPJ(this,event)", maxlength = "18" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TelefoneFixo, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TelefoneFixo, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Telefone Fixo", required = "true", tabindex = "3", onkeyup = "formataTelefone(this,event)", maxlength = "14" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TelefoneCelular, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TelefoneCelular, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe um Telefone Celular", tabindex = "4", onkeyup = "formataTelefone(this,event)", maxlength = "14" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Endereço", required = "true", tabindex = "5" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Número do Endereço", required = "true", tabindex = "6" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Bairro", required = "true", tabindex = "7" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o CEP", required = "true", tabindex = "8", onkeyup = "formataCEP(this,event)", maxlength = "9" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe a Cidade", required = "true", tabindex = "9" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("LblEstados", "Estado*", new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DropEstados", new List<SelectListItem>{
+                            new SelectListItem{ Text = "AC", Value = "1"},
+                            new SelectListItem{ Text = "AL", Value = "2"},
+                            new SelectListItem{ Text = "AP", Value = "3"},
+                            new SelectListItem{ Text = "AM", Value = "4"},
+                            new SelectListItem{ Text = "BA", Value = "5"},
+                            new SelectListItem{ Text = "CE", Value = "6"},
+                            new SelectListItem{ Text = "DF", Value = "7"},
+                            new SelectListItem{ Text = "ES", Value = "8"},
+                            new SelectListItem{ Text = "GO", Value = "9"},
+                            new SelectListItem{ Text = "MA", Value = "10"},
+                            new SelectListItem{ Text = "MT", Value = "11"},
+                            new SelectListItem{ Text = "MS", Value = "12"},
+                            new SelectListItem{ Text = "MG", Value = "13"},
+                            new SelectListItem{ Text = "PA", Value = "14"},
+                            new SelectListItem{ Text = "PB", Value = "15"},
+                            new SelectListItem{ Text = "PR", Value = "16"},
+                            new SelectListItem{ Text = "PE", Value = "17"},
+                            new SelectListItem{ Text = "PI", Value = "18"},
+                            new SelectListItem{ Text = "RJ", Value = "19"},
+                            new SelectListItem{ Text = "RN", Value = "20"},
+                            new SelectListItem{ Text = "RS", Value = "21"},
+                            new SelectListItem{ Text = "RO", Value = "22"},
+                            new SelectListItem{ Text = "RR", Value = "23"},
+                            new SelectListItem{ Text = "SC", Value = "24"},
+                            new SelectListItem{ Text = "SP", Value = "25"},
+                            new SelectListItem{ Text = "SE", Value = "26"},
+                            new SelectListItem{ Text = "TO", Value = "27"},
+                                }, "--Selecione--", new { @class = "form-control", required = "true", tabindex = "10"})
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeDoContato, htmlAttributes: new { @class = "control-label col-md-2 " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NomeDoContato, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Nome do Contato", tabindex = "11" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmailDoContato, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EmailDoContato, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe um Email para Contato", tabindex = "12" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe aqui uma Observação", tabindex = "13", } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("LblStatus", "Status*", new { @class = "control-label  col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DropStatus", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Ativo", Value = "1", Selected = true},
+                            new SelectListItem{ Text = "Inativo", Value = "2"},
+                                }, "--Selecione--", new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-md-10">
+                            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger", tabindex = "15" })
+                            <input type="submit" value="Gravar" class="btn btn-success" tabindex="14"/>
+                        </div>
+                    </div>
+
+                </div>
+            }
+    </div>
+</div>                       
+<script src="~/JS/Mascara.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

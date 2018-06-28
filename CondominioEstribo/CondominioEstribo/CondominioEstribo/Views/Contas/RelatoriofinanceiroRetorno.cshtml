@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "RelatoriofinanceiroRetorno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<div class="well">
+         <label>
+         relatório do mês   @Html.Raw(ViewBag.Mes)
+        </label>                
+  
+   
+    <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+
+            <th>   valor total das mensalidades      </th>
+            <th>   valor total das despesas </th>
+            <th>   valor total das Mercadorias</th>
+
+
+        </tr>
+        <tr>
+
+            <td>@Html.Raw(ViewBag.MensalidadesPagas) </td>
+            <td>@Html.Raw(ViewBag.ContasPagas)    </td>
+            <td> @Html.Raw(ViewBag.Mercadorias)    </td>
+
+        </tr>
+    </table>
+
+</div>

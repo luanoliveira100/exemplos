@@ -1,0 +1,63 @@
+﻿@model CondominioEstribo.Models.Evento
+
+@{
+    ViewBag.Title = "Detalhes Da Reserva";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <br />
+        <br />
+        <h2>Detalhes Da Reserva</h2>
+
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Nome do Evento:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data Inicial:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DataInicial)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data Final:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DataFinal)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Dia Todo:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DiaTodo)</h4>
+                </dd>
+
+            </dl>
+        </div>
+        <br />
+
+        <div class="form-group">
+
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })
+
+        </div>
+
+
+    </div>
+</div>
+<br />
+<br />
+

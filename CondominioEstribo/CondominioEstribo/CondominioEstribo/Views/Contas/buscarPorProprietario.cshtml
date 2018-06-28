@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Proprietario>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<link href="~/ContentTeste/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scriptteste/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="~/Scriptteste/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#txtSearch").autocomplete({
+            source: '@Url.Action("GetProprietario")',
+            minLenght :2 
+        })  ;
+    });
+</script>
+   
+
+      <br />
+      <br />
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="well">
+            <div class="form-group">
+                @Html.Label("lblExcel", " insira o nome*", new { @class = "control-label col-md-1" })
+                @Html.TextBox("searchTerm", null, new { id = "txtSearch" })
+            </div>
+            <div class="form-group">
+               @Html.Label("lblExcel", " insira o mês*", new { @class = "control-label col-md-1" })
+                <input type="month" name="ano">                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    
+   

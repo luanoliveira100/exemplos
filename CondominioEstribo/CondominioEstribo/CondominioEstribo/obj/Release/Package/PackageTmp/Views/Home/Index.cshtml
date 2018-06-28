@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Página Inicial";
+}
+
+<div class="container" style="text-align:center">
+    <div class="row" style="margin-top:10px">
+        <h2>CONDOMÍNIO ESTRIBO</h2>
+        @if (Session["Nome"] != null)
+        {
+            <p><h3>Bem vindo ao sistema!</h3></p>            
+        }
+    </div>
+</div>
+
+<br />
+
+<!-- Carrosel de imagens -->
+<div class="container">    
+    <section id="sliderhome">
+        <div id="meuSlider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#meuSlider" data-slide-to="0" class="active"></li>
+                <li data-target="#meuSlider" data-slide-to="1"></li>
+                <li data-target="#meuSlider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active"><img src="~/Images/slide_1.jpg" style="width:100%" alt="Slide 1" /></div>
+                <div class="item"><img src="~/Images/slide_2.jpg" style="width:100%" alt="Slide 2" /></div>
+                <div class="item"><img src="~/Images/slide_3.jpg" style="width:100%" alt="Slide 3" /></div>
+            </div>
+            <a class="left carousel-control" href="#meuSlider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#meuSlider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+    </section>
+</div>
+
+
+

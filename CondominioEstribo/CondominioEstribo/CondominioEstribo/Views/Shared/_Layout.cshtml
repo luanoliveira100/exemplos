@@ -1,0 +1,758 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Condomínio Estribo</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/fullcalendar.css" />
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- Voce Esta aki-->
+
+
+    <!--Stylo CSS do Bootstrap  - Colar após o carregamento de seu CSS-->
+    @Styles.Render("~/Content/bootstrap")
+    <style>
+        body {
+            background-image: url('../../Images/../../Images/img_background.jpg');
+            margin-bottom: 1px;
+            height:auto;
+            /*background-repeat: no-repeat;*/
+        }
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .navbar-inverse {
+            background-image: -webkit-linear-gradient(#40474f, #2c3135 50%, #585f66);
+            background-image: -o-linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#6d94bf), color-stop(50%, #446e9b), to(#3e648d));
+            background-image: linear-gradient(#008080, #008080 50%, #008080);
+            background-repeat: no-repeat;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6d94bf', endColorstr='#ff3e648d', GradientType=0);
+            -webkit-filter: none;
+            filter: none;
+            border: 1px solid #008080;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+        }
+
+
+            .navbar-inverse .navbar-brand {
+                color: whitesmoke;
+            }
+
+
+        .navbar-brand, .navbar-brand:hover {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            padding-top: 4px;
+        }
+
+        a.navbar-brand .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: xx-large;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .container {
+            margin-right: 0;
+            margin-left: 7;
+            padding-left: 0;
+            padding-right: 0;
+            width: auto;
+        }
+
+        .carousel-inner {
+            position: relative;
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            width: 100%;
+        }
+
+        
+        .well {
+            min-height: 20px;
+            padding: 19px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+            width: auto/*1315px*/;
+            position: relative;
+            margin-left: auto/*140px*/;
+        }
+
+            .well h2 {
+                color: darkcyan;
+                font-weight: bold;
+            }
+
+
+        /*.glyphicon {
+                    position: absolute;
+                    top: 10px;
+                    display: inline-block;
+                    font-family: 'Glyphicons Halflings';
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 0.5;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    padding-left: 290px;
+                    font-size:x-large;
+                }*/
+
+        #calendar {
+            width: 60%;
+            height: 60%;
+            padding-left: 100px;
+        }
+
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px;
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: white;
+            height: 100%;
+        }
+
+        .teste {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #008080;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+            .teste a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 20px;
+                color: white;
+                display: block;
+                transition: 0.3s;
+                font-weight: bold;
+            }
+
+                .teste a:hover, .offcanvas a:focus {
+                    color: white;
+                }
+
+            .teste .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        media screen and (max-height: 450px) {
+            .teste;
+            padding-top: 15px;
+        }
+
+        .teste a {
+            font-size: 18px;
+        }
+
+        /* Propriedades do Icone do Calendario */
+        button.ui-button-icon-only {
+            width: 2.4em;
+            height: 2.4em;
+            position: absolute;
+        }
+
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #2d2d30;
+            color: #f5f5f5;
+            padding: 32px;
+            width: auto /*1583px*/;
+            height:170px;
+        }
+
+            footer a {
+                color: #f5f5f5;
+            }
+
+                footer a:hover {
+                    color: #777;
+                    text-decoration: none;
+                }
+
+            footer .fa {
+                display: inline-block;
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: xx-large;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                align-items:center;
+            }        
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="main">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;O Estribo</a>
+                @*<a class="navbar-brand" style="padding-top:16px" href="@Url.Action("Index", "Contato")">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contato</a>
+                    <a class="navbar-brand" style="padding-top:16px" href="@Url.Action("Index", "Contato")">Sobre</a>*@
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    @*<li class="active">@Html.ActionLink("Contato", "Index", "Contato")</li>*@
+
+                    <!-- Mostra o menus na barra se o usuário -->
+                    <!-- estiver logado e/ou tiver permissão-->
+
+                    @if (Session["Nome"] != null)
+                    {
+                        string perfil = (string)Session["Perfil"];
+
+                        if (perfil.Equals("Administrador") || perfil.Equals("Secretária"))
+                        {
+
+                             <!--DROPDOWN APENAS PARA TESTE - ADMINISTRADOR -->
+
+                            <li><a href="#" onclick="openNavCadastros()" style="cursor:pointer">Cadastros</a></li>
+                            <li><a href="#" onclick="openNavEstoque()" style="cursor:pointer">Estoque</a></li>
+                            <li><a href="#" onclick="openNavFinanceiro()" style="cursor:pointer">Financeiro</a></li>
+                            <li><a href="#" onclick="openNavLazer()" style="cursor:pointer">Lazer</a></li>
+                            <li><a href="#" onclick="openNavRelatorioDeAtivos()" style="cursor:pointer">Lista De Ativos</a></li>
+                            @*<li><a href="#" onclick="openNavRelatorios()" style="cursor:pointer">Lista</a></li>*@
+                            <li><a href="#" onclick="openNavPortaria()" style="cursor:pointer">Portaria</a></li>
+                            <li><a href="#" onclick="openNavOcorrencias()" style="cursor:pointer">Ocorrência</a></li>
+                            <li><a href="#" onclick="openNavObra()" style="cursor:pointer">Obras</a></li>
+
+
+                        }
+                        else
+                        {
+                            <!--DROPDOWN - PROPRIETARIO -->
+                            if (perfil.Equals("Proprietário"))
+                            {
+                                <li><a href="#" onclick="openNavCadastrosProprietario()" style="cursor:pointer">Proprietário</a></li>
+                                <li><a href="#" onclick="openNavFinanceiroProprietario()" style="cursor:pointer">Financeiro</a></li>
+                                <li><a href="#" onclick="openNavLazerProprietario()" style="cursor:pointer">Lazer</a></li>
+                                <li><a href="#" onclick="openNavObraProprietario()" style="cursor:pointer">Obras</a></li>
+                                <li><a href="#" onclick="openNavOcorrenciasProprietario()" style="cursor:pointer">Ocorrência</a></li>                                
+
+                            }
+                            else
+                            {
+                                <!--DROPDOWN - INQUILINO -->
+                                if (perfil.Equals("Inquilino"))
+                                {
+                                    <li><a href="#" onclick="openNavCadastrosInquilino()" style="cursor:pointer">Inquilino</a></li>
+                                    <li><a href="#" onclick="openNavFinanceiroInquilino()" style="cursor:pointer">Financeiro</a></li>
+                                    <li><a href="#" onclick="openNavLazerInquilino()" style="cursor:pointer">Lazer</a></li>
+                                    <li><a href="#" onclick="openNavObraInquilino()" style="cursor:pointer">Obras</a></li>
+                                    <li><a href="#" onclick="openNavOcorrenciasInquilino()" style="cursor:pointer">Ocorrência</a></li>                                    
+
+                                }
+                                else
+                                {
+                                    <!--DROPDOWN - PORTARIA -->
+                                    if (perfil.Equals("Porteiro"))
+                                    {
+                                        <li><a href="#" onclick="openNavCadastros()" style="cursor:pointer">Cadastros</a></li>
+                                        <li><a href="#" onclick="openNavObra()" style="cursor:pointer">Obras</a></li>
+                                        <li><a href="#" onclick="openNavOcorrencias()" style="cursor:pointer">Ocorrência</a></li>
+                                        <li><a href="#" onclick="openNavRelatorios()" style="cursor:pointer">Lista</a></li>
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                </ul>
+                <!-- MENUS PARA O PERFIL SECRETARIA E ADMINISTRADOR -->
+                <div id="mySidenavCadastros" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavCadastros()">&times;</a>
+                    <a href="@Url.Action("Create", "Proprietario")">Proprietário</a>
+                    <a href="@Url.Action("Create", "Inquilino")">Inquilino</a>
+                    <a href="@Url.Action("Create", "Funcionario")">Funcionário</a>
+                    <a href="@Url.Action("Create", "Visitante")">Visitante</a>
+                    <a href="@Url.Action("Create", "Lote")">Lote</a>
+                    <a href="@Url.Action("Create", "Cargo")">Cargo</a>
+                    <a href="@Url.Action("Create", "CadastroVeiculoProprietario")">Veículo Proprietário</a>
+                    <a href="@Url.Action("Create", "CadastroVeiculoInquilino")">Veículo Inquilino</a>
+                    <a href="@Url.Action("Create", "CadastroVeiculoFuncionario")">Veículo Funcionário</a>
+                </div>
+
+                <div id="mySidenavEstoque" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavEstoque()">&times;</a>
+                    <a href="@Url.Action("Create", "Fornecedor")">Cadastro De Fornecedor</a>
+                    <a href="@Url.Action("Create", "Produto")">Cadastro De Produto</a>
+                    <a href="@Url.Action("Create", "EntradaMercadoria")">Entrada De Mercadoria</a>
+                    <a href="@Url.Action("Create", "SaidaMercadoria")">Saída De Mercadoria</a>
+                    <a href="@Url.Action("Index", "Fornecedor")">Lista De Fornecedor</a>
+                    <a href="@Url.Action("Index", "Produto")">Lista De Produto</a>
+                    <a href="@Url.Action("ListarDados", "EntradaMercadoria")">Lista De Entrada De Mercadoria</a>
+                    <a href="@Url.Action("Index", "SaidaMercadoria")">Lista De Saída De Mercadoria</a>
+                </div>
+
+                <div id="mySidenavFinanceiro" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavFinanceiro()">&times;</a>
+                    <a href="@Url.Action("Create", "TipoDaContas")">Criar Conta</a>
+                    <a href="@Url.Action("Create", "ContasPagars")">Contas à Pagar</a>                                  
+                    <a href="@Url.Action("buscarPorProprietario", "Contas")">Buscar por Proprietário</a>
+                    <a href="@Url.Action("buscar", "Contas")">Listar Por data</a>
+                    <a href="@Url.Action("Index", "Contas")">Mensalidades a Receber</a>
+                    <a href="@Url.Action("RelatorioFinanceiro", "Contas")">Relatório Mensal</a>
+                    <a href="@Url.Action("relatorioDetalhado", "Contas")">Relatório Mensal</a>
+                    <a href="@Url.Action("teste", "Contas")">teste</a>
+                </div>
+
+                <div id="mySidenavLazer" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavLazer()">&times;</a>
+                    <a href="@Url.Action("Reservar", "Evento")">Reserva De Área Cumum</a>
+                    <a href="@Url.Action("Ver", "Evento")">Lista De Reservas</a>
+                </div>
+
+                <div id="mySidenavRelatorioDeAtivos" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavRelatorioDeAtivos()">&times;</a>
+                    <a href="@Url.Action("Index", "Proprietario")">Lista De Proprietario</a>
+                    <a href="@Url.Action("Index", "Inquilino")">Lista De Inquilino</a>
+                    <a href="@Url.Action("Index", "Funcionario")">Lista De Funcionário</a>
+                    <a href="@Url.Action("Index", "Lote")">Lista De Lote</a>
+                    <a href="@Url.Action("Index", "Cargo")">Lista De Cargo</a>
+                    <a href="@Url.Action("Index", "CadastroVeiculoProprietario")">Lista De Veículo Proprietário</a>
+                    <a href="@Url.Action("Index", "CadastroVeiculoInquilino")">Lista De Veículo Inquilino</a>
+                    <a href="@Url.Action("Index", "CadastroVeiculoFuncionario")">Lista De Veículo Funcionário</a>                    
+                </div>
+
+                @*<div id="mySidenavRelatorios" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavRelatorios()">&times;</a>
+                        <a href="@Url.Action("ListarTodosProprietarios", "Proprietario")">Lista De Todos Proprietário</a>
+                        <a href="@Url.Action("ListarTodosInquilinos", "Inquilino")">Lista De Todos Inquilino</a>
+                        <a href="@Url.Action("ListarTodosFuncionarios", "Funcionario")">Lista De Todos Funcionário</a>
+                        <a href="@Url.Action("ListarTodosFornecedores", "Fornecedor")">Lista De Todos Fornecedores</a>
+                        <a href="@Url.Action("ListarTodosCargos", "Cargo")">Lista De Todos Cargo</a>
+                        <a href="@Url.Action("ListarTodosVisitantes", "Visitante")">Lista De Todos Visitante</a>
+                    </div>*@
+
+                <div id="mySidenavPortaria" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavPortaria()">&times;</a>
+                    <a href="@Url.Action("Create", "Visitante")">Cadastro De Visitante</a>                      
+                    <a href="@Url.Action("BuscarPlaca", "GerenciarEntradaPortaria")">Consulta De Veículo Por Placa</a>
+                    <a href="@Url.Action("ListarTodosVisitantes", "Visitante")">Lista De Todos os Visitantes</a>
+                    <a href="@Url.Action("Create", "GerenciarEntradaPortaria")">Registrar Entrada De Pessoas</a>
+                    <a href="@Url.Action("Index", "GerenciarEntradaPortaria")">Registrar Saída De Pessoas</a>
+                    <a href="@Url.Action("ListarTodosRegistros", "GerenciarEntradaPortaria")">Lista De Registro De Pessoas</a>
+                </div>
+
+                <div id="mySidenavOcorrencias" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavOcorrencias()">&times;</a>
+                    <a href="@Url.Action("Create", "Ocorrencia")">Registrar Ocorrência</a>
+                    <a href="@Url.Action("ListaEmAberto", "Ocorrencia")">Lista De Ocorrências Em Aberto</a>
+                    <a href="@Url.Action("ListaFinalizada", "Ocorrencia")">Lista De Ocorrências Finalizadas</a>
+                </div>
+
+                <div id="mySidenavObra" class="teste">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNavObra()">&times;</a>
+                    <a href="@Url.Action("Create", "Obra")">Cadastrar Obra</a>
+                    <a href="@Url.Action("ListaObraEmAndamento", "Obra")">Lista De Obras Em Andamento</a>
+                    <a href="@Url.Action("ListaObraConcluida", "Obra")">Lista De Obras Finalizadas</a>
+                </div>
+
+
+                <!-- MENUS PARA O PERFIL PROPRIETARIO -->
+                    <!--MENU CADASTRO-->
+                    <div id="mySidenavCadastrosProprietario" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavCadastrosProprietario()">&times;</a>
+                        <a href="@Url.Action("Create", "CadastroVeiculoProprietario")">Cadastro De Veículo</a>
+                        <a href="@Url.Action("Create", "Visitante")">Cadastro De Visitante</a>                        
+                    </div>
+                    <!--MENU FINANCEIRO-->
+                    <div id="mySidenavFinanceiroProprietario" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavFinanceiroProprietario()">&times;</a>
+                        <a href="@Url.Action("Create", "Debito")">Lista de Gastos</a>
+                    </div>
+                    <!--MENU LAZER-->
+                    <div id="mySidenavLazerProprietario" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavLazerProprietario()">&times;</a>
+                        <a href="@Url.Action("Reservar", "Evento")">Reserva De Área Cumum</a>
+                    </div>
+
+                    <!--MENU OBRA-->
+                    <div id="mySidenavObraProprietario" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavObraProprietario()">&times;</a>
+                        <a href="@Url.Action("ListaObraEmAndamento", "Obra")">Lista De Obras Em Andamento</a>
+                        <a href="@Url.Action("ListaObraConcluida", "Obra")">Lista De Obras Finalizadas</a>
+                    </div>
+
+                    <!--MENU OCORRENCIA-->
+                    <div id="mySidenavOcorrenciasProprietario" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavOcorrenciasProprietario()">&times;</a>
+                        <a href="@Url.Action("Create", "Ocorrencia")">Registrar Ocorrência</a>
+                        <a href="@Url.Action("ListaEmAberto", "Ocorrencia")">Lista De Ocorrências Em Aberto</a>
+                        <a href="@Url.Action("ListaFinalizada", "Ocorrencia")">Lista De Ocorrências Finalizadas</a>
+                    </div>
+
+
+                <!-- MENUS PARA O PERFIL INQUILINO -->
+                    <!--MENU CADASTRO-->
+                    <div id="mySidenavCadastrosInquilino" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavCadastrosInquilino()">&times;</a>
+                        <a href="@Url.Action("Create", "CadastroVeiculoInquilino")">Cadastro De Veículo</a>                        
+                        <a href="@Url.Action("Create", "Visitante")">Cadastro De Visitante</a>                        
+                    </div>
+                    <!--MENU FINANCEIRO-->
+                    <div id="mySidenavFinanceiroInquilino" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavFinanceiroInquilino()">&times;</a>
+                        <a href="@Url.Action("Create", "Debito")">Lista de Gastos</a>
+                    </div>
+                    <!--MENU LAZER-->
+                    <div id="mySidenavLazerInquilino" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavLazerInquilino()">&times;</a>
+                        <a href="@Url.Action("Reservar", "Evento")">Reserva De Área Cumum</a>
+                    </div>
+                    <!--MENU OBRA-->
+                    <div id="mySidenavObraInquilino" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavObraInquilino()">&times;</a>
+                        <a href="@Url.Action("ListaObraEmAndamento", "Obra")">Lista De Obras Em Andamento</a>
+                        <a href="@Url.Action("ListaObraConcluida", "Obra")">Lista De Obras Finalizadas</a>
+                    </div>
+                    <!--MENU OCORRENCIA-->
+                    <div id="mySidenavOcorrenciasInquilino" class="teste">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNavOcorrenciasInquilino()">&times;</a>
+                        <a href="@Url.Action("Create", "Ocorrencia")">Registrar Ocorrência</a>
+                        <a href="@Url.Action("ListaEmAberto", "Ocorrencia")">Lista De Ocorrências Em Aberto</a>
+                        <a href="@Url.Action("ListaFinalizada", "Ocorrencia")">Lista De Ocorrências Finalizadas</a>
+                    </div>
+
+
+                <!-- MENUS PARA O PERFIL PORTARIA -->
+
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+
+
+    <!--SCRIPTS MENU LATERAL PARA O PERFIL DE SECRETARIA E ADMINISTRADOR -->
+    <script>
+        //NavBar Cadastros
+        function openNavCadastros() {
+            document.getElementById("mySidenavCadastros").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavCadastros() {
+            document.getElementById("mySidenavCadastros").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Estoque
+        function openNavEstoque() {
+            document.getElementById("mySidenavEstoque").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavEstoque() {
+            document.getElementById("mySidenavEstoque").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Financeiro
+        function openNavFinanceiro() {
+            document.getElementById("mySidenavFinanceiro").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavFinanceiro() {
+            document.getElementById("mySidenavFinanceiro").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Lazer
+        function openNavLazer() {
+            document.getElementById("mySidenavLazer").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavLazer() {
+            document.getElementById("mySidenavLazer").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Relatorio De Ativos
+        function openNavRelatorioDeAtivos() {
+            document.getElementById("mySidenavRelatorioDeAtivos").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavRelatorioDeAtivos() {
+            document.getElementById("mySidenavRelatorioDeAtivos").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Relatorios
+        function openNavRelatorios() {
+            document.getElementById("mySidenavRelatorios").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavRelatorios() {
+            document.getElementById("mySidenavRelatorios").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Portaria
+        function openNavPortaria() {
+            document.getElementById("mySidenavPortaria").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavPortaria() {
+            document.getElementById("mySidenavPortaria").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Ocorrencias
+        function openNavOcorrencias() {
+            document.getElementById("mySidenavOcorrencias").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavOcorrencias() {
+            document.getElementById("mySidenavOcorrencias").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Obras
+        function openNavObra() {
+            document.getElementById("mySidenavObra").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavObra() {
+            document.getElementById("mySidenavObra").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+
+
+
+    <!--SCRIPTS MENU LATERAL PARA O PERFIL DE PROPRIETARIO -->
+    <script>
+        //NavBar Cadastros Proprietarios
+        function openNavCadastrosProprietario() {
+            document.getElementById("mySidenavCadastrosProprietario").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavCadastrosProprietario() {
+            document.getElementById("mySidenavCadastrosProprietario").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Financeiro Proprietarios
+        function openNavFinanceiroProprietario() {
+            document.getElementById("mySidenavFinanceiroProprietario").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavFinanceiroProprietario() {
+            document.getElementById("mySidenavFinanceiroProprietario").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Lazer Proprietarios
+        function openNavLazerProprietario() {
+            document.getElementById("mySidenavLazerProprietario").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavLazerProprietario() {
+            document.getElementById("mySidenavLazerProprietario").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Ocorrencias Proprietarios
+        function openNavOcorrenciasProprietario() {
+            document.getElementById("mySidenavOcorrenciasProprietario").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavOcorrenciasProprietario() {
+            document.getElementById("mySidenavOcorrenciasProprietario").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Obras Proprietarios
+        function openNavObraProprietario() {
+            document.getElementById("mySidenavObraProprietario").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavObraProprietario() {
+            document.getElementById("mySidenavObraProprietario").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+
+
+
+    <!--SCRIPTS MENU LATERAL PARA O PERFIL DE INQUILINO -->
+    <script>
+        //NavBar Cadastros Inquilino
+        function openNavCadastrosInquilino() {
+            document.getElementById("mySidenavCadastrosInquilino").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavCadastrosInquilino() {
+            document.getElementById("mySidenavCadastrosInquilino").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Financeiro Inquilino
+        function openNavFinanceiroInquilino() {
+            document.getElementById("mySidenavFinanceiroInquilino").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavFinanceiroInquilino() {
+            document.getElementById("mySidenavFinanceiroInquilino").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Lazer Inquilino
+        function openNavLazerInquilino() {
+            document.getElementById("mySidenavLazerInquilino").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavLazerInquilino() {
+            document.getElementById("mySidenavLazerInquilino").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Ocorrencias Inquilino
+        function openNavOcorrenciasInquilino() {
+            document.getElementById("mySidenavOcorrenciasInquilino").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavOcorrenciasInquilino() {
+            document.getElementById("mySidenavOcorrenciasInquilino").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+
+        //NavBar Obras Inquilino
+        function openNavObraInquilino() {
+            document.getElementById("mySidenavObraInquilino").style.width = "300px";
+            document.getElementById("main").style.marginLeft = "300px";
+            //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNavObraInquilino() {
+            document.getElementById("mySidenavObraInquilino").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+    <script src="~/Scripts/calendario.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+    <!--Script js do Bootstrap  - Colar após o carregamento do Jquery-->
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <!--SCRIPTS DIVERSOS-->
+    <!--SCRIPTS MENSAGENS-->
+    @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
+
+</body>
+</html>

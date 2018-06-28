@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link href="~/content/datatables/css/jquery.datatables.min.css" rel="stylesheet" />
+<script src="~/scripts/datatables/jquery.datatables.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Succes</title>
+</head>
+<body>
+
+    <label class="caption"> lista de titulos pagos</label>
+    <div> </div>
+    <label>
+        titulos salvos    @Html.Raw(ViewBag.contador)
+    </label>
+
+    <div class="well">
+        <table cellspacing="2" cellpadding="2" border="1" id="myTable">
+            <thead>
+                <tr>
+                    <th>     Nome        </th>
+                    <th>  data do titulo </th>
+                    <th>data do pagamento</th>
+                    <th>    valor       </th>
+                    <th>    fonte       </th>
+                    <th>    codigo      </th>
+                    <th>    lote        </th>
+                    <th>    pago        </th>
+                </tr>
+
+            </thead>
+
+
+
+
+            @foreach (var c in ViewBag.listarContas)
+            {
+
+
+                <tbody>
+                    <tr>
+
+                        <td> @c.proprietario.Nome </td>
+                        <td> @c.datatitulo.ToShortDateString()     </td>
+                        <td> @c.datapagamento.ToShortDateString()      </td>
+                        <td> @c.valor </td>
+                        <td> @c.fonte </td>
+                        <td> @c.codigo </td>
+                        <td> @c.lote </td>
+                        <td> @c.pago </td>
+
+
+                    </tr>
+                </tbody>
+            }
+          
+
+
+        </table>
+        <text> valor total dos pagamentos  @Html.Raw(ViewBag.subtotal)</text>
+     </div>
+    
+</body>
+</html>
+

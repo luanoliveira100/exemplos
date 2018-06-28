@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Condomínio Estribo</title>    
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />               
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>    
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+   
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Condomínio Estribo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                   <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+
+                    <!-- Mostra o menus na barra se o usuário -->
+                    <!-- estiver logado e/ou tiver permissão-->
+
+                    @if (Session["Nome"] != null)
+                    {
+                        string perfil = (string)Session["Perfil"];
+
+                        if (perfil.Equals("Administrativo") || perfil.Equals("Secretária") )
+                        {
+
+                             <!--DROPDOWN APENAS PARA TESTE - ADMINISTRADOR -->
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Cadastro De Proprietario", "Create", "Proprietario")</li>
+                                    <li>@Html.ActionLink("Cadastro De Inquilino", "Create", "Inquilino")</li>
+                                    <li>@Html.ActionLink("Cadastro De Funcionário", "Create", "Funcionario")</li>                                    
+                                    <li>@Html.ActionLink("Cadastro De Visitante", "Create", "Visitante")</li>
+                                    <li>@Html.ActionLink("Cadastro De Lote", "Create", "Lote")</li>
+                                    <li>@Html.ActionLink("Cadastro De Cargo", "Create", "Cargo")</li>
+                                    <li>@Html.ActionLink("Cadastro De Veículo de Funcionário", "Create", "CadastroVeiculoFuncionario")</li>
+                                    <li>@Html.ActionLink("Cadastro De Veículo de Inquilino", "Create", "CadastroVeiculoInquilino")</li>
+                                    <li>@Html.ActionLink("Cadastro De Veículo de Proprietário", "Create", "CadastroVeiculoProprietario")</li>                                                                       
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estoque<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Cadastro De Fornecedor", "Create", "Fornecedor")</li>
+                                    <li>@Html.ActionLink("Cadastro De Produto", "Create", "Produto")</li>
+                                    <li>@Html.ActionLink("Entrada De Mercadoria", "Create", "EntradaMercadoria")</li>
+                                    <li>@Html.ActionLink("Saída De Mercadoria", "Create", "SaidaMercadoria")</li>
+                                    <li>@Html.ActionLink("Lista De Entrada De Mercadoria", "Index", "EntradaMercadoria")</li>
+                                    <li>@Html.ActionLink("Lista De Saida De Mercadoria", "Index", "SaidaMercadoria")</li>
+                                    <li>@Html.ActionLink("Lista De Produtos", "Index", "Produto")</li>
+                                    <li>@Html.ActionLink("Lista De Fornecedores", "Index", "Fornecedor")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Financeiro<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Contas à Receber", "Create", "Financeiro")</li>
+                                    <li>@Html.ActionLink("Contas à Pagar", "Create", "Financeiro")</li>
+                                    <li>@Html.ActionLink("Fluxo De Caixa ", "Create", "Financeiro")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lazer<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Reserva De Área Comum", "Index", "Evento")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatório De Ativos<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Relatório De Proprietarios", "Index", "Proprietario")</li>
+                                    <li>@Html.ActionLink("Relatório De Inquilínos", "Index", "Inquilino")</li>
+                                    <li>@Html.ActionLink("Relatório De Funcionários", "Index", "Funcionario")</li>                         
+                                    <li>@Html.ActionLink("Relatório De Visitantes", "Index", "Visitante")</li>
+                                    @*<li>@Html.ActionLink("Lista De Eventos", "Index", "Evento")</li>*@
+                                    <li>@Html.ActionLink("Relatório De Cargos", "Index", "Cargo")</li>
+                                    <li>@Html.ActionLink("Relatório De Lotes", "Index", "Lote")</li>
+                                    <li>@Html.ActionLink("Relatório De Veículo de Proprietários", "Index", "CadastroVeiculoProprietario")</li>
+                                    <li>@Html.ActionLink("Relatório De Veículo de Inqulinos", "Index", "CadastroVeiculoInquilino")</li>
+                                    <li>@Html.ActionLink("Relatório De Veículo de Funcionarios", "Index", "CadastroVeiculoFuncionario")</li>                                  
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">                                    
+                                    <li>@Html.ActionLink("Relatório De Todos Fornecedores", "ListarTodosFornecedores", "Fornecedor")</li>                                
+                                    <li>@Html.ActionLink("Relatório De Todos Visitantes", "ListarTodosVisitantes", "Visitante")</li>
+                                    <li>@Html.ActionLink("Relatório De Todos Cargos", "ListarTodosCargos", "Cargo")</li>
+                                    <li>@Html.ActionLink("Relatório De Todos Funcionários", "ListarTodosFuncionarios", "Funcionario")</li>
+                                    <li>@Html.ActionLink("Relatório De Todos Inquilínos", "ListarTodosInquilinos", "Inquilino")</li>
+                                    <li>@Html.ActionLink("Relatório De Todos Proprietários", "ListarTodosProprietarios", "Proprietario")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portaria<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Cadastro De Visitante", "Create", "Visitante")</li>
+                                    <li>@Html.ActionLink("Consulta De Visitantes", "Index", "Visitante")</li>                                    
+                                    <li>@Html.ActionLink("Registrar Entrada De Pessoas", "Create", "GerenciarEntradaPortaria")</li>
+                                    <li>@Html.ActionLink("Registrar Saída De Pessoas", "Index", "GerenciarEntradaPortaria")</li>
+                                    <li>@Html.ActionLink("Lista De Registros De Pessoas", "ListarTodosRegistros", "GerenciarEntradaPortaria")</li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ocorrêcias<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Registro de Ocorrências", "Create", "Ocorrencia")</li>
+                                    <li>@Html.ActionLink("Lista de Ocorrências", "Index", "Ocorrencia")</li>                                    
+                                    <li>@Html.ActionLink("Lista de Ocorrências Concluidas", "ListaOcorrenciaConcluida", "Ocorrencia")</li>
+                                </ul>
+                            </li>
+
+                            @*<li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                            <li>@Html.ActionLink("Sobre", "Index", "Sobre")</li>*@
+
+
+                        }
+                        else
+                        {                      
+                            
+                                if (perfil.Equals("Proprietário"))
+                                {
+                                    <!--DROPDOWN APENAS PARA TESTE - PROPRIETARIO -->
+
+                                    <li class="dropdown">
+                                        <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Condômino<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">                                            
+                                            <li>@Html.ActionLink("Reserva De Área Comum", "Index", "Evento")</li>
+                                            <li>@Html.ActionLink("Cadastro De Veículo", "Create", "Veiculo")</li>
+                                            <li>@Html.ActionLink("Cadastro De Visitante", "Create", "Visitante")</li>                                            
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contato<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Sobre", "Index", "Sobre") </li>
+
+
+                                }
+                                else
+                                {
+                                    if (perfil.Equals("Inquilino"))
+                                    {
+                                        <!--DROPDOWN APENAS PARA TESTE - INQUILINO -->
+
+                                        <li class="dropdown">
+                                            <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Condômino<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>@Html.ActionLink("Reserva De Área Comum", "Index", "Evento")</li>
+                                                <li>@Html.ActionLink("Cadastro De Veículo", "Create", "Veiculo")</li>
+                                                <li>@Html.ActionLink("Cadastro De Visitante", "Create", "Visitante")</li>                                                
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="accordion-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contato<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                                            </ul>
+                                        </li>
+                                        <li>@Html.ActionLink("Sobre", "Index", "Sobre") </li>
+                                    }
+                                    else
+                                    {
+                                        if (perfil.Equals("Porteiro"))
+                                        {
+                                             <!--DROPDOWN APENAS PARA TESTE - PORTARIA -->
+
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portaria<span class="caret"></span></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>@Html.ActionLink("Cadastro De Veículo", "Create", "Veiculo")</li>
+                                                    <li>@Html.ActionLink("Cadastro De Visitante", "Create", "Visitante")</li>
+                                                    <li>@Html.ActionLink("Lista De Visitantes", "Index", "Visitante")</li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                                       
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+              
+     </div>
+    
+    
+
+
+       <div style="text-align:center">
+           <footer>
+              <p>System Condominium - Todos os direitos reservados - &copy; @DateTime.Now.ToShortDateString() </p>
+           </footer>
+       </div>
+
+
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/fullcalendar.css" />
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+    <script src="~/Scripts/calendario.js"></script>
+
+    <script src="~/Scripts/bootbox.min.js"></script>
+    @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
+
+</body>
+</html>

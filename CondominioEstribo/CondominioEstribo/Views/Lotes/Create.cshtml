@@ -1,0 +1,75 @@
+﻿@model CondominioEstribo.Models.Lote
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtProprietario").autocomplete({
+            source: '@Url.Action("GetProrprietario")'
+        });
+    });
+</script>
+
+<br />
+<br />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="well">
+        <div class="form-horizontal">
+            <h4>Lote</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumeroLote, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NumeroLote, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                    @Html.ValidationMessageFor(model => model.NumeroLote, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("LblArea", "Area*", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DropArea", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Sim", Value = "1", Selected = true},
+                            new SelectListItem{ Text = "Não", Value = "2"},
+                                }, "--Selecione--", new { @class = "form-control", required = "true" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("lblProprietario", " insira o proprietario*", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("proprietario", null, new { id = "txtProprietario", @class = "form-control", placeholder = "Informe o proprietário", required = "true" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

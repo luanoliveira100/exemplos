@@ -1,0 +1,51 @@
+﻿@model CondominioEstribo.Models.Usuario
+
+@{
+    ViewBag.Title = "Troca De Senha";
+}
+
+<link href="~/css/login.css" rel="stylesheet" />
+
+@using (Html.BeginForm("MudarSenha", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken();
+
+    <div class="container" style="text-align:center">
+        <div class="form-login">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><b>Acesso ao Sistema</b></div>
+                </div>
+
+                <div style="padding-top:30px" class="panel-body">
+                    <div style="display:none" id="result" class="alert alert-danger col-sm-12">
+
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.LoginUsuario, "", new { @class = "text-danger" })
+                    <div style="margin-bottom: 25px;" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.EditorFor(model => model.LoginUsuario, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Informe seu CPF", autofocus = true, onkeyup = "formataCPF(this,event)", maxlength = "14" } })                        
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.SenhaUsuario, "", new { @class = "text-danger" })
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.EditorFor(model => model.SenhaUsuario, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Senha" } })                        
+                    </div>
+
+                    <div style="margin-top:10px" class="form-group">
+
+                        <div class="col-sm-12 controls">
+                            <input type="submit" value="Entrar" class="btn black btn-lg" />                     
+                        </div>                                                                                  
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+}
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>

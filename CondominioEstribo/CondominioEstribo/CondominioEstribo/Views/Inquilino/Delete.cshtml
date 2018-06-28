@@ -1,0 +1,74 @@
+﻿@model CondominioEstribo.Models.Inquilino
+
+@{
+    ViewBag.Title = "Excluir Inquilíno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Inquilíno</h2>
+
+<br />
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeInquilino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeInquilino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPFInquilino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPFInquilino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RGInquilino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RGInquilino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefoneInquilino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefoneInquilino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+
+    <h3>Deseja realmente excluir este Inquilíno ?</h3>
+
+    <br />
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-1">
+                <input type="submit" value="Excluir" class="btn btn-primary" />
+            </div>
+            <div class="col-md-offset-1">
+                <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+    }
+</div>

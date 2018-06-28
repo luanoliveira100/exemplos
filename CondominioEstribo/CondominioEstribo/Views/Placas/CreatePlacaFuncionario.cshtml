@@ -1,0 +1,56 @@
+﻿@model CondominioEstribo.Models.Placa
+
+@{
+    ViewBag.Title = "CreatePlacaFuncionario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtFuncionario").autocomplete({
+            source: '@Url.Action("GetFuncionario")'
+        });
+    });
+</script>
+<br />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="well">
+        <div class="form-horizontal">
+            <h4>Placa</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.numeroPlaca, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.numeroPlaca, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.numeroPlaca, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("lblFuncionario", " insira o Funcionário*", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("funcionario", null, new { id = "txtFuncionario", @class = "form-control", placeholder = "Informe o proprietário" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

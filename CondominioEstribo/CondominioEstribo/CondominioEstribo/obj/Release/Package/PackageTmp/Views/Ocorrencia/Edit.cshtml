@@ -1,0 +1,132 @@
+﻿@model CondominioEstribo.Models.Ocorrencia
+
+@{
+    ViewBag.Title = "Finalizar Ocorrência";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+
+        <h2>Finalizar Ocorrência</h2>
+        <br />
+        <h6 style="color:darkred"><b>NÃO ESQUEÇA DE INFORMAR QUAL FOI O DESFECHO DESTA OCORRÊNCIA</b></h6>
+        <br />
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.OcorrenciaId)
+                    <div class="form-group">
+                        @Html.Label("LblTipo", "Tipo da Ocorrência*", new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("DropTipoOcorrencia", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Reclamação", Value = "1"},
+                            new SelectListItem{ Text = "Dúvida", Value = "2"},
+                            new SelectListItem{ Text = "Sugestão", Value = "3"},
+                            new SelectListItem{ Text = "Outros", Value = "4"},
+                                }, "--Selecione--", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LoteRegistroOcorrencia, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.LoteRegistroOcorrencia, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Desfecho, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Desfecho, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <div class="col-md-1">
+                            <input type="submit" value="Gravar" class="btn btn-success" tabindex="4" />
+                        </div>
+                        <div class="col-md-offset-4">
+                            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+                <div class="col-md-4">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DataOcorrencia, htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.DataOcorrencia, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CondominoRegistroOcorrencia, htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CondominoRegistroOcorrencia, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("LblSituacao", "Situação da Ocorrência*", new { @class = "control-label" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("DropSituacaoOcorrencia", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Em Aberto", Value = "1"},
+                            new SelectListItem{ Text = "Concluido", Value = "2", Selected = true},
+                                }, "--Selecione--", new { @class = "form-control", disabled = "disabled" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+        }
+
+    </div>
+</div>
+
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>

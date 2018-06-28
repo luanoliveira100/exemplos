@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Reserva de Áreas Comuns";
+}
+<link rel="stylesheet" href="~/css/calendario_medium.css" />
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Reserva de Áreas Comuns</h2>
+        <br />
+        <br />
+        <div class="alert alert-dismissible alert-info col-md-9">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Selecione um Data para Efetuar sua Reserva.</strong>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div id="calendar"></div>
+        </div>
+        <br />
+        <br />
+        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+
+
+    </div>
+</div>
+
+<br />
+
+
+
+
+

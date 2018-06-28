@@ -1,0 +1,71 @@
+﻿@model CondominioEstribo.Models.Ocorrencia
+
+@{
+    ViewBag.Title = "Detalhe Da Ocorrência";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Detalhe Da Ocorrência</h2>
+        <br />
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                <h4><b>Tipo:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Tipo)</h4>
+            </dd>
+
+            <dt>
+                <h4><b>Descrição:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Descricao)</h4>
+            </dd>
+
+
+            <dt>
+                <h4><b>Situação:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Situacao)</h4>
+            </dd>
+
+            <dt>
+                <h4><b>Data Abertura:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.DataAberturaOcorrencia)</h4>
+            </dd>
+
+            <dt>
+                <h4><b>Data Desfecho:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.DataDesfechoOcorrencia)</h4>
+            </dd>
+
+            <dt>
+                <h4><b>Desfecho:</b></h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Desfecho)</h4>
+            </dd>
+        </dl>
+        <br />
+
+        <div class="form-group">
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })            
+        </div>
+
+    </div>
+</div>

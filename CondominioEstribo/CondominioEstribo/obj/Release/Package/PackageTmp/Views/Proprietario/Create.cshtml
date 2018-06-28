@@ -1,0 +1,174 @@
+﻿@model CondominioEstribo.Models.Proprietario
+
+@{
+    ViewBag.Title = "Cadastro De Proprietário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+
+        <h2 class="">Cadastro De Proprietário</h2>
+
+        <br />
+
+        @using (Html.BeginForm())
+            {
+           
+            @Html.AntiForgeryToken()
+            
+            @*  PRIMEIRA TABELA  *@
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                                                           
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe seu Nome", autofocus = "autofocus", tabindex = "1", required = "true" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Logradouro, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Logradouro, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe seu Endereço", tabindex = "4", required = "true" } })
+                            @Html.ValidationMessageFor(model => model.Logradouro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TelefoneCelular, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.TelefoneCelular, new { htmlAttributes = new { @class = "form-control", onkeyup = "formataTelefone(this,event)", placeholder = "Informe um Telefone Celular", required = "true", tabindex = "7", maxlength = "14" } })
+                            @Html.ValidationMessageFor(model => model.TelefoneCelular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("LblStatus", "Status*", new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.DropDownList("DropStatus", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Ativo", Value = "1", Selected = true},
+                            new SelectListItem{ Text = "Inativo", Value = "2"},
+                                }, "--Selecione--", new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>       
+
+
+                </div>
+
+
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-1">
+                        <input type="submit" value="Gravar" class="btn btn-success " tabindex="10" />
+                    </div>
+                    <div class="col-md-offset-4">
+                        @*<a href="javascript:window.history.go(-1)" class="btn btn-default" tabindex="11">Voltar</a>*@                       
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+
+                <br />
+
+            </div>
+
+
+            @*  SEGUNDA TABELA  *@
+
+
+        <div class="col-md-4">  
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", onkeyup = "formataCPF(this,event)", placeholder = "Informe seu CPF", tabindex = "2", required = "true", maxlength="14" } })
+                        @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Número do Endereço", required = "true", tabindex = "5" } })
+                        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TelefoneComercial, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.TelefoneComercial, new { htmlAttributes = new { @class = "form-control", onkeyup = "formataTelefone(this,event)", placeholder = "Informe um Telefone Comercial", required = "true", tabindex = "8", maxlength = "14" } })
+                        @Html.ValidationMessageFor(model => model.TelefoneComercial, "", new { @class = "text-danger" })
+                    </div>
+                </div>   
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe aqui uma Observação", required = "true", tabindex = "5" } })
+                        @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                    </div>
+                </div>                     
+               
+            </div>                
+            
+        </div>
+
+
+
+        @*  TERCEIRA TABELA  *@
+
+            <div class="col-md-4">               
+                <div class="form-horizontal"> 
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RG, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.RG, new { htmlAttributes = new { @class = "form-control", onkeyup = "formataRG(this,event)", placeholder = "Informe seu RG", tabindex = "3", required = "true", maxlength="12" } })
+                            @Html.ValidationMessageFor(model => model.RG, "", new { @class = "text-danger" })
+                        </div>
+                    </div>   
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control", onkeyup = "formataCEP(this,event)", placeholder = "Informe seu CEP", required = "true", tabindex = "6", maxlength="9" } })
+                            @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>  
+
+                                 
+                                        
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe seu Email", required = "true", tabindex = "9" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>                                     
+                                        
+                </div>
+            </div>
+
+       
+
+
+        }
+        
+        
+
+    </div>
+
+
+</div>
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>

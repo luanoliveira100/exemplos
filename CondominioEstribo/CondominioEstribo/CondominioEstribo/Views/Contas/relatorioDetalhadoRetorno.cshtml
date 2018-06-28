@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "relatorioDetalhadoRetorno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="well">
+
+
+    <label>
+        referentes ao mes    @Html.Raw(ViewBag.Mes)
+    </label>
+    <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+
+            <th>     Nome        </th>
+            <th>  data do titulo </th>
+            <th>data do pagamento</th>
+            <th>    valor       </th>
+            <th>    fonte       </th>
+            <th>    codigo      </th>
+            <th>    lote        </th>
+            <th>    pago        </th>
+
+        </tr>
+
+
+        @foreach (var c in ViewBag.listarContas)
+        {
+
+            foreach (var p in ViewBag.ListaProprietario)
+            {
+                if (@c.proprietarioid == @p.UsuarioId)
+                {
+
+                    <tr>
+
+                        <td> @p.Nome </td>
+                        <td> @c.datatitulo.ToShortDateString()     </td>
+                        <td> @c.datapagamento.ToShortDateString()      </td>
+                        <td> @c.valor </td>
+                        <td> @c.fonte </td>
+                        <td> @c.codigo </td>
+                        <td> @c.lote </td>
+                        <td> @c.pago </td>
+
+
+                    </tr>
+                }
+            }
+        }
+
+
+    </table>
+    <label>
+        valor total    @Html.Raw(ViewBag.MensalidadesPagas)
+    </label>
+
+    <br />
+
+    <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+
+            <th>     Produto        </th>
+            <th>     Quantidade     </th>
+            <th>   Valor da Nota    </th>
+            <th>       Data         </th>
+            <th>    Observação      </th>
+           
+        </tr>
+
+
+        @foreach (var c in ViewBag.Mercadorias)
+        {
+                    <tr>
+
+                        <td> @c.ProdutoEntradaMercadoria </td>
+                        <td> @c.QuantidadeInserida  </td>
+                        <td> @c.ValorTotalDaNF     </td>
+                        <td> @c.DataDaEntrada.ToShortDateString()  </td>
+                        <td> @c.Observacao  </td>
+
+
+
+
+                    </tr>             
+        }
+    </table>
+    <label>
+        valor total    @Html.Raw(ViewBag.totalMercadorias)
+    </label>
+    <br />
+
+    <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+
+            <th>     Tipo da Obra        </th>
+            <th>     Descrição da Obra     </th>
+            <th>     Status da Obra   </th>
+            <th>     Valor da Obra      </th>
+            <th>     Data de Início        </th>
+            <th>     Data de Término       </th>
+
+        </tr>
+
+
+        @foreach (var c in ViewBag.listaDeObras)
+        {
+            <tr>
+
+                <td> @c.TipoObra </td>
+                <td> @c.DescricaoObra  </td>
+                <td> @c.StatusObra     </td>                
+                <td> @c.ValorObra  </td>
+                <td> @c.DataInicioObra.ToShortDateString()  </td>
+                <td> @c.DataTerminoObra.ToShortDateString()  </td>
+
+
+
+
+            </tr>
+        }
+    </table>
+    <label>
+        valor total    @Html.Raw(ViewBag.totalObras)
+    </label>
+    <br />
+</div>
+
+

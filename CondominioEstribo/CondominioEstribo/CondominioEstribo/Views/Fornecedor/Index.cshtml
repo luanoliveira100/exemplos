@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Fornecedor>
+
+@{
+    ViewBag.Title = "Lista De Fornecedores Ativos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Lista De Fornecedores Ativos</h2>
+        <br />
+        <br />
+
+        @using (Html.BeginForm("Index", "Fornecedor", FormMethod.Post))
+        {
+            <p><b>Buscar por Fornecedor</b></p>
+            <div class="form-horizontal">
+                <div class="col-md-3">
+                    @Html.TextBox("txtFornecedor", "", new { @class = "form-control", placeholder = "Informe o Nome do Fornecedor", autofocus = "autofocus", tabindex = "1" })
+                </div>
+                <div class="col-md-0">
+                    <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                    @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary", tabindex = "3" })
+                </div>
+
+
+            </div>
+        }
+        <br />
+        <div class="alert alert-dismissible alert-info col-md-9">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Para mais Informações click em Detalhes.</strong>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Empresa
+                    </th>
+                    <th>
+                        CNPJ
+                    </th>
+                    <th>
+                        Telefone Fixo
+                    </th>
+                    <th>
+                        Email Contato
+                    </th>
+                    <th>
+                        Nome Contato
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeEmpresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CNPJ_CPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefoneFixo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailDoContato)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeDoContato)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.FornecedorId }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.FornecedorId }, new { @class = "btn btn-warning btn-xs" })
+                        <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Inativar este Fornecedor ?', '@Url.Action("InativarFornecedor","Fornecedor", new { id = item.FornecedorId})')">Inativar</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        @*@Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })*@
+        @Html.ActionLink("Listar Inativos", "ListarTodosFornecedores", "", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+<br />

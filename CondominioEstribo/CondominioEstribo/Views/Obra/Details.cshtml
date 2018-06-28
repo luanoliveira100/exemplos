@@ -1,0 +1,73 @@
+﻿@model CondominioEstribo.Models.Obra
+
+@{
+    ViewBag.Title = "Detalhes Da Obra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Detalhes Da Obra</h2>
+        <br />
+        <br />
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Tipo Da Obra:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.TipoObra)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Descrição:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DescricaoObra)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Status:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.StatusObra)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Valor:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.ValorObra)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data De Início:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DataInicioObra)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Data De Término:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.DataTerminoObra)</h4>
+                </dd>
+            </dl>
+            <br />
+
+            <div class="form-group">
+                @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+

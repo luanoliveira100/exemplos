@@ -1,0 +1,49 @@
+﻿@model CondominioEstribo.Models.TipoDaConta
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+        <hr />
+        <div class="well">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Observacao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Observacao)
+                </dd>
+
+            </dl>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

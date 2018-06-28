@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<meta name="viewport" content="width=device-width" />
+<title>Master Details entry form</title>
+
+<div class="container" style="max-width:640px">
+    <div class="master">
+        <h4>Order Details</h4>
+        <table>
+            <tr>
+                <td>Order No</td>
+                <td>
+                    <input type="text" id="orderno" />
+                    <span class="error">Order no required </span>
+                </td>
+                <td>Order Date</td>
+                <td>
+                    <input type="text" id="orderDate" />
+                    <span class="error"> Valid order date required (ex:MM-dd_yyyy)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td colspan="3">
+                    <textarea id="description" style="width:100%"></textarea>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="details">
+        <h4>Order Items</h4>
+        <table style="width:100%">
+            <tr>
+                <td>Item Name</td>
+                <td>Quantity</td>
+                <td>Rate</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="itemName" />
+                    <span class="error">Item name required</span>
+                </td>
+                <td>
+                    <input type="text" id="quantity" />
+                    <span> Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="text" id="rate" />
+                    <span class="error"> Valid rate required</span>
+                </td>
+                <td>
+                    <input type="button" id="add" value="add" />
+                </td>
+            </tr>
+        </table>
+        <div id="orderItems" class="tablecontainer">
+
+        </div>
+        <div style="padding:10px 0px; text-align:right">
+            <input id="submit" type="button" value="save" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+@*<link rel="stylesheet" href="//code.jquerry.com/ui/1.11.4/themes/smoothness/jquerry-ui.css"/>*@
+
+<link href="~/jquerry1.11.4/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/jquerry1.11.4/jquery-ui.structure.css" rel="stylesheet" />
+<link href="~/jquerry1.11.4/jquery-ui.structure.min.css" rel="stylesheet" />
+<link href="~/jquerry1.11.4/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/jquerry1.11.4/jquery-ui.theme.min.css" rel="stylesheet" />
+<script src="~/jquerry1.11.4/jquery-ui.js"></script>
+<script src="~/jquerry1.11.4/jquery-ui.min.js"></script>
+<script src="~/jquerry1.11.4/jquery.js"></script>
+@section Scripts{
+
+    @*<script src="//code.jquerry.com/ui/1.11.4/jquerry-ui.js"></script>*@
+    <script>
+        //Data Picker
+        $(function () {
+            $("#orderDate").datepicker({
+                dateFormat: 'mm-dd-yyyy'
+            });
+        });
+        $(document).ready(function () {
+            var orderItems = [];
+                //add button click function
+            $('#add').click(function () {
+                //check validation of order items
+                var isValidItem = true;
+                if ($('#itemName').val().trim()=='') {
+                    isValidItem = false;
+                    $('#itemName').siblings('span.error').css('visibility','visible');
+                } else {
+                    $('#itemName').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#quantity').val().trim() == '' && isNaN($('#quantity').val().trin()))) {
+                    isValidItem = false;
+                    $('#quantity').siblings('span.error').css('visibility', 'visible');
+                } else {
+                    $('#quantity').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#rate').val().trim() == '' && isNaN($('#rate').val().trin()))) {
+                    isValidItem = false;
+                    $('#rate').siblings('span.error').css('visibility', 'visible');
+                } else {
+                    $('#rate').siblings('span.error').css('visibility', 'hidden');
+                }
+                // add item to list if valid
+                if (isValidItem) {
+                    orderItems.push({
+                        ItemName: $('#itemName').val().trim(),
+                        Quantity: parseInt( $('#quantity').val().trim()),
+                        Rate: parseFloat($('#rate').val().trim()),
+                        Total: parseInt($('#quantity').val().trim()) * parseFloat($('#rate').val().trim())
+                    });
+
+                    //Clear fields
+
+
+                    $('#itemName').val('').focus();
+                    $('#quantity,#rate').val('');
+
+                }
+                //populate order items
+               GeneratedItemsTable();
+
+
+            });
+            //save button click function
+            $('#submit').click(function () {
+                //validation  of order
+                var isAllValid = true;
+                if (orderItems.length > 0) {
+                    $('#orderItems').html('<span style="color:red;">Please add order items</span>');
+                    isAllValid == false;
+                }
+                if ($('orderNo').val().trim() == '') {
+                    $('orderNo').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                } else {
+                    $('orderNo').siblings('span.error').css('visibility', 'hidden');
+                }
+                if ($('orderdate').val().trim() == '') {
+                    $('orderdate').siblings('span.error').css('visibility', 'visible');
+                    isallvalid = false;
+                } else {
+                    $('orderdate').siblings('span.error').css('visibility', 'hidden');
+                }
+
+
+                //save if valid
+                if (isAllValid) {
+                    var data = {
+                        OrderNo: $('#orderNo').val().trim(),
+                        OrderDate: $('#orderDate').val().trim(),
+                        //Sorry forgot to add Description field;
+                        Description: $('#description').val().trim(),
+                        OrderDetails: orderItems
+
+                    }
+                    $(this).val('Please Wait...');
+                    $.ajax({
+                        url: '/Teste/SaveOrder',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is succesfully save to database
+                            if (d.status == true) {
+                                // will send status from server side
+                                alert('successfullu done.')
+                                // clear form
+                                orderItems = [];
+                                $('#orderNo').val('');
+                                $('#orderDate').val('');
+                                $('#orderItems').empty();
+                            } else {
+                                alert('failed');
+                            }
+                        },
+                        error: function () {
+                            alert('error. please try again');
+                        }
+
+                    });
+                }
+            });
+
+            //$('#submit').click(function () {
+            //    //validation order
+            //    var isAllVAlid = true;
+
+
+                //save if valid
+           // })
+                //function for show added itens table
+            function GeneratedItemsTable() {
+                if (orderItems.length=0) {
+                    var $table = $('<table/>');
+                    $table('<thead><tr><th>Item</th><th>Quantity</th><th>Rate</th><th>Total</th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(orderItems, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.ItemName));
+                        $row.append($('<td/>').html(val.Quantity));
+                        $row.append($('<td/>').html(val.Rate));
+                        $row.append($('<td/>').html(val.Total));
+                        $tbody.append($row);
+                    });
+                    $table.append($tbody);
+                    $('#orderItems').html($table);
+                }
+            }
+        });
+    </script>
+}
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    .container td {
+        vertical-align: top;
+    }
+
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }
+
+    .ui-widget {
+        font-size: 12px !important;
+    }
+</style>
+
+
+

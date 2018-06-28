@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BuscarPorData</title>
+</head>
+<body>
+
+
+    <div class="well">
+        <br />
+        <br />
+        <table cellspacing="2" cellpadding="2" border="1">
+            <tr>
+
+
+                <th>     Nome        </th>
+                <th>  data do titulo </th>
+                <th>data do pagamento</th>
+                <th>    valor       </th>
+                <th>    fonte       </th>
+                <th>    codigo      </th>
+                <th>    lote        </th>
+                <th>    pago        </th>
+            </tr>
+
+
+
+
+            @foreach (var c in ViewBag.listarContas)
+            {
+                foreach (var p in ViewBag.ListaProprietario)
+                {
+                    if (@c.proprietarioid == @p.UsuarioId)
+                    {
+
+
+                        <tr>
+                            <td> @p.Nome </td>
+                            <td> @c.datatitulo.ToShortDateString()     </td>
+                            <td> @c.datapagamento.ToShortDateString()      </td>
+                            <td> @c.valor </td>
+                            <td> @c.fonte </td>
+                            <td> @c.codigo </td>
+                            <td> @c.lote </td>
+                            <td> @c.pago </td>
+
+                        </tr>
+
+
+                    }
+                }
+            }
+
+        </table>
+    </div>
+    <text> valor total dos pagamentos  @Html.Raw(ViewBag.Subtotal)</text>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Reserva de Áreas Comuns";
+}
+
+<link rel="stylesheet" href="~/css/calendario_medium.css" />
+<link rel="stylesheet" href="~/Content/fullcalendar.css" />
+
+
+<script src="~/Scripts/fullcalendar.min.js"></script>
+<script src="~/Scripts/calendario.js"></script>
+<script src="~/Scripts/calendario.js"></script>
+<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+
+
+
+<div class="modal fade" id="FAQ-modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"; style="text-align:center">Calendario para Reserva de Area Comum.</h4>
+            </div>
+            @*<div class="modal-body" style="width:800px;height:400px">*@
+            <div class="modal-body" style="width:auto;height:500px">
+                    <div class="row">
+                        <div class="alert alert-dismissible alert-info" style="width:auto; text-align:center">
+                            @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+                            <strong>Clique em HOJE para abrir o Calendario !!.</strong>
+                        </div>
+                        <div id="calendar" style="width:auto;align-items:center;padding-right:100px"></div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <br />
+    <br />
+    <div class="container">
+        <div class="well">            
+            <h2>Fotos das Areas Comuns</h2>
+            <br />                        
+            <br />                
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_1.jpg" alt="Lights" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar a Piscina.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_2.jpg" alt="Nature" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar o Salão de Jogos.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_3.jpg" alt="Fjords" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar a Sauna e ficar de viadagem.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_1.jpg" alt="Lights" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar a Piscina.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_2.jpg" alt="Nature" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar o Salão de Jogos.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail" id="myModal">
+                        <a href="#FAQ-modal" data-toggle="modal">
+                            <img src="~/Images/slide_3.jpg" alt="Fjords" style="width:100%">
+                            <div class="caption">
+                                <p>Click aqui para reservar a Sauna e ficar de viadagem.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+

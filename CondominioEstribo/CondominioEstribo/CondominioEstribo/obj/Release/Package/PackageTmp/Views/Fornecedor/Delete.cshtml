@@ -1,0 +1,130 @@
+﻿@model CondominioEstribo.Models.Fornecedor
+
+@{
+    ViewBag.Title = "Excluir Fornecedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Fornecedor</h2>
+
+<br />
+
+<div>
+  
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNPJ_CPF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNPJ_CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefoneFixo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefoneFixo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefoneCelular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefoneCelular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CEP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bairro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailDoContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailDoContato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeDoContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeDoContato)
+        </dd>
+
+    </dl>
+
+    <h3>Deseja realmente excluir este Fornecedor ?</h3>
+
+    <br />
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-1">
+                <input type="submit" value="Excluir" class="btn btn-primary" />
+            </div>
+            <div class="col-md-offset-1">
+                <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+    }
+</div>

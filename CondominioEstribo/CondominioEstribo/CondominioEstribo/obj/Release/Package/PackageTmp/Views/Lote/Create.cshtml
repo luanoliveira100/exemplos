@@ -1,0 +1,102 @@
+﻿@model CondominioEstribo.Models.Lote
+
+@{
+    ViewBag.Title = "Cadastro De Lote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+
+
+        <h2>Cadastro De Lote</h2>
+
+        <br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <div class="col-md-4">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumeroLote, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.NumeroLote, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Número do Lote", autofocus = "autofocus", tabindex = "1", required = "true" } })
+                        @Html.ValidationMessageFor(model => model.NumeroLote, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe uma Observação", tabindex = "3", required = "true" } })
+                        @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-1">
+                        <input type="submit" value="Gravar" class="btn btn-success" tabindex="4" />
+                    </div>
+                    <div class="col-md-offset-4">
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+
+
+                <br />
+
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.Label("lblAreaConstruida", "Possui Área Construida*", new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("DropAreaConstruida", new List<SelectListItem> {
+                        new SelectListItem { Text = "Sim", Value = "1",},
+                        new SelectListItem { Text = "Não", Value = "2"},                        
+           }, "--Selecione--", new { @class = "form-control", tabindex = "2", required = "true" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NomeProprietarioDoLote, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.NomeProprietarioDoLote, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Proprietário do Lote", tabindex = "3", required = "true" } })
+                        @Html.ValidationMessageFor(model => model.NomeProprietarioDoLote, "", new { @class = "text-danger" })
+                    </div>
+                </div>               
+
+            </div>
+        </div>
+
+}
+
+    </div>
+</div>
+
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>
+
+
+
+
+
+    
+

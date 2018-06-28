@@ -1,0 +1,94 @@
+﻿@model CondominioEstribo.Models.Cargo
+
+@{
+    ViewBag.Title = "Cadastro De Cargo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        
+        <h2>Cadastro De Cargo</h2>
+        
+        <br />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeCargo, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.NomeCargo, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Cargo", required = "true", autofocus = "autofocus", tabindex = "1" } })
+                            @Html.ValidationMessageFor(model => model.NomeCargo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-1">
+                        <input type="submit" value="Gravar" class="btn btn-success" tabindex = "3" />
+                    </div>
+                    <div class="col-md-offset-4">
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+
+                <br />
+
+            </div>
+
+
+            
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.Label("LblStatus", "Status*", new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.DropDownList("DropStatus", new List<SelectListItem>{
+                            new SelectListItem{ Text = "Ativo", Value = "1", Selected = true},
+                            new SelectListItem{ Text = "Inativo", Value = "2"},
+                                }, "--Selecione--", new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe um Observação", required = "true", autofocus = "autofocus", tabindex = "2" } })
+                            @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+
+
+    </div>
+</div>
+
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>
+
+
+
+
+
+

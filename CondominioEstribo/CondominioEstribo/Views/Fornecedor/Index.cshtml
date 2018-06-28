@@ -1,0 +1,151 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Fornecedor>
+
+@{
+    ViewBag.Title = "Lista De Fornecedores Ativos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtFornecedor").autocomplete({
+            source: '@Url.Action("GetFornecedor")'
+        });
+    });
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+           // dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Lista De Fornecedores Ativos</h2>
+        <br />
+        <br />
+
+        @using (Html.BeginForm("Index", "Fornecedor", FormMethod.Post))
+        {
+            <p><b>Buscar por Fornecedor</b></p>
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.Label("lblForncedor", " insira o Fornecedor*", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("fornecedor", null, new { id = "txtFornecedor", @class = "form-control", placeholder = "Informe o Forncedor" })
+                    </div>
+                </div>
+
+                @*<div class="col-md-3">
+                    @Html.TextBox("txtFornecedor", "", new { @class = "form-control", placeholder = "Informe o Nome do Fornecedor", autofocus = "autofocus", tabindex = "1" })
+                </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary", tabindex = "3" })
+                    </div>
+                </div>
+
+                @*<div class="col-md-0">
+                    <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                    @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary", tabindex = "3" })
+                </div>*@
+
+
+            </div>
+        }
+        <br />
+       
+        @if (Model.Count() != 0)
+        {
+            <div class="alert alert-dismissible alert-info col-md-9">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Para mais Informações click em Detalhes.</strong>
+            </div>
+            <table cellspacing="2" cellpadding="2" border="1" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Empresa
+                        </th>
+                        <th>
+                            CNPJ
+                        </th>
+                        <th>
+                            Telefone Fixo
+                        </th>
+                        <th>
+                            Email Contato
+                        </th>
+                        <th>
+                            Nome Contato
+                        </th>
+                        <th>
+                            Acões
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="active">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeEmpresa)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CNPJ_CPF)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TelefoneFixo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailDoContato)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeDoContato)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "Details", new { id = item.FornecedorId }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Editar", "Edit", new { id = item.FornecedorId }, new { @class = "btn btn-warning btn-xs" })
+                                <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Inativar este Fornecedor ?', '@Url.Action("InativarFornecedor","Fornecedor", new { id = item.FornecedorId})')">Inativar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+          
+        }
+        <br />
+        @Html.ActionLink("Listar Inativos", "ListarTodosFornecedores", "", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+<br />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+@*<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>*@

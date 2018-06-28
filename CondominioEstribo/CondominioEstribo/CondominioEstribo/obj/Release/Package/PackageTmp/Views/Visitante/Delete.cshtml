@@ -1,0 +1,86 @@
+﻿@model CondominioEstribo.Models.Visitante
+
+@{
+    ViewBag.Title = "Excluir Visitante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Visitante</h2>
+
+<br />
+
+<div>
+        
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeVisitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeVisitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlacaVeiculoVisitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlacaVeiculoVisitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+
+    <h3>Deseja realmente excluir este Visitante ?</h3>
+    
+    <br />
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-1">
+                <input type="submit" value="Excluir" class="btn btn-primary" /> 
+            </div>
+            <div class="col-md-offset-1">
+                <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+            </div>
+       </div>
+    }
+</div>
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>
+
+@{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}

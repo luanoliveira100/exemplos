@@ -1,0 +1,149 @@
+﻿@model CondominioEstribo.Models.Fornecedor
+
+@{
+    ViewBag.Title = "Detalhes Do Fornecedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes Do Fornecedor</h2>
+
+<br />
+<br />
+
+
+<div>
+    <dl class="dl-horizontal">        
+        <dt>
+           <h5><b>Nome Da Empresa:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.NomeEmpresa)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>CNPJ/CPF:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.CNPJ_CPF)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Telefone Fixo:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.TelefoneFixo)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Telefone Celular:</b></h5>
+        </dt>
+
+        <dd>
+           <h5>@Html.DisplayFor(model => model.TelefoneCelular)</h5>
+        </dd>
+
+        <dt>
+           <h5><b>Endereço:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Endereco)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Número:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Numero)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>CEP:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.CEP)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Bairro:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Bairro)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Cidade:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Cidade)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Estado:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Estado)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Email Do Contato:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.EmailDoContato)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Nome Do Contato:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.NomeDoContato)</h5>
+        </dd>
+        <dt>
+            <h5><b>Observação:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Observacao)</h5>
+        </dd>
+        <dt>
+            <h5><b>Status:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.FlagStatus)</h5>
+        </dd>
+    </dl>
+</div>
+
+<br />
+
+
+<div class="row">
+    <div class="col-md-1">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.FornecedorId }, new { @class = "btn btn-warning" })
+        
+    </div>
+    <div class="col-md-1">
+        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+    </div>
+</div>
+
+
+<br />
+
+
+
+
+   
+  
+

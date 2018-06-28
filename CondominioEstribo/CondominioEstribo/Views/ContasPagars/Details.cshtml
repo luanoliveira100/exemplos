@@ -1,0 +1,50 @@
+﻿@model CondominioEstribo.Models.ContasPagar
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ContasPagar</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.datatitulo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.datatitulo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.datapagamento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.datapagamento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.valor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.valor)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ContasPagarId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

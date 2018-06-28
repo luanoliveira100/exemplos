@@ -1,0 +1,246 @@
+﻿@model IEnumerable<CondominioEstribo.Models.GerenciarEntradaPortaria>
+
+@{
+    ViewBag.Title = "Consulta De Veículo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="well">
+        <h2>Consulta De Veículo Por Placa</h2>
+        <br />
+        <br />
+
+        <link href="~/ContentTeste/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+        <script src="~/Scriptteste/jquery-1.10.2.js" type="text/javascript"></script>
+        <script src="~/Scriptteste/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+    $(function (){
+        $("#txtPlaca").autocomplete({
+            source: '@Url.Action("GetPlaca")'
+        })  ;
+    });
+        </script>
+
+        @using (Html.BeginForm("BuscarPlaca", "GerenciarEntradaPortaria", FormMethod.Post))
+        {
+         <p><b>Buscar por Placa</b></p>
+            <div class="form-horizontal">
+                <div class="col-md-3">
+                    @Html.TextBox("Placa", null, new { id = "txtPlaca", @class = "form-control", placeholder = "Informe a placa" })
+                    
+                </div>
+                <div class="col-md-0">
+                    <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                    @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+        <br />
+        @if (ViewBag.placaProprietario != null)
+        {
+            
+            <br />
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Quem Sou
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Placa Do Veículo
+                        </th>
+                        
+
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var c in ViewBag.placaProprietario)
+                {
+                    <tr class="active">
+                        <td>
+                            Proprietário
+                        </td>
+                        <td>
+                            @c.NomeDoProprietario
+                        </td>
+                        <td>
+                            @c.PlacaVeiculoProprietario
+                        </td>
+                        
+
+                    </tr>
+                }
+
+            </table>
+        }
+
+
+
+
+        @if (ViewBag.placaFuncionario != null)
+        {
+            
+                <br />
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Quem Sou
+                            </th>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Placa Do Veículo
+                            </th>
+                            
+                        </tr>
+
+                    </thead>
+                    @foreach (var c in ViewBag.placaFuncionario)
+                    {
+                        <tr class="active">
+                            <td>
+                                Funcionario
+                            </td>
+                            <td>
+                                @c.NomeDoFuncionario
+                            </td>
+                            <td>
+                                @c.PlacaVeiculoFuncionario
+                            </td>
+                            
+                        </tr>
+                    }
+
+                </table>
+        }
+
+
+        @if (ViewBag.placaInquilino != null)
+        {
+            
+                <br />
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Quem Sou
+                            </th>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Placa Do Veículo
+                            </th>
+                           
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @foreach (var c in ViewBag.placaInquilino)
+                    {
+                        <tr class="active">
+                            <td>
+                                Inquilino
+                            </td>
+                            <td>
+                                @c.NomeDoInquilino
+                            </td>
+                            <td>
+                                @c.PlacaVeiculoInquilino
+                            </td>
+                          
+                        </tr>
+                    }
+                </table>
+          }
+
+
+
+
+
+
+        @if (ViewBag.placaVisitaante != null)
+        {
+            
+                        <br />
+
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Quem Sou
+                                    </th>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        RG
+                                    </th>
+                                    <th>
+                                        Data Entrada
+                                    </th>
+                                    <th>
+                                        Data Saída
+                                    </th>
+                                    <th>
+                                        Placa
+                                    </th>
+                                    <th>
+                                        Telefone
+                                    </th>
+                                    <th>
+                                        Observação
+                                    </th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var c in ViewBag.placaVisitaante)
+                            {
+                                <tr class="active">
+                                    <td>
+                                        Visitante
+                                    </td>
+                                    <td>
+                                        @c.Nome
+                                    </td>
+                                    <td>
+                                        @c.RG
+                                    </td>
+                                    <td>
+                                        @c.DataHoraEntrada.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @c.DataHoraSaida.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @c.PlacaDoVeiculo
+                                    </td>
+                                    <td>
+                                        @c.TelefoneContato
+                                    </td>
+                                    <td>
+                                        @c.Observacao
+                                    </td>
+                                   
+                                </tr>
+
+
+
+                            }
+                        </table>
+        }
+    </div>
+</div>
+
+

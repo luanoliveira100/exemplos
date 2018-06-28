@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>buscar</title>
+</head>
+<body>
+   
+
+    @using (@Html.BeginForm("buscar", "Contas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <h3>arquivo excel</h3>
+       
+            <div class="well">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.Label("lblMes", " Data*", new { @class = "control-label col-md-2", required = "true" })
+                        <div class="col-md-10">
+                            <input type="datetime" name="mes" class="form-control" placeholder="selecione o Ano">
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                <label> digite o mes </label>
+                <input type="month" name="mes" required>
+            </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Enviar"/>
+                        </div>
+                    </div>
+
+                    
+                       
+                   
+
+                </div>
+        </div>
+
+
+
+
+
+    }
+
+
+</body>
+</html>
+@section scripts {
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $('input[type=datetime]').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy/mm',
+                onClose: function (dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                }
+            });
+        });
+    </script>
+}
+};

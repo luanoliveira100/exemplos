@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'                
+            ]        
+        });
+    });
+</script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> Buscar Por Data</title>
+</head>
+<body>
+
+
+    <div class="well">
+        <br />
+        <br />
+        <table cellspacing="2" cellpadding="2" border="1"id="myTable">
+            <thead>
+                <tr>
+                    <th>     Nome        </th>
+                    <th>  Data do Título </th>
+                    <th>Data do Pagamento</th>
+                    <th>    Valor       </th>
+                    <th>    Fonte       </th>
+                    <th>    Código      </th>
+                    <th>    Lote        </th>
+                    <th>    Pago        </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @foreach (var c in ViewBag.listarContas)
+                {
+
+
+
+                            <tr>
+                                <td> @c.proprietario.Nome </td>
+                                <td> @c.datatitulo.ToShortDateString()     </td>
+                                <td> @c.datapagamento.ToShortDateString()      </td>
+                                <td> @c.valor </td>
+                                <td> @c.fonte </td>
+                                <td> @c.codigo </td>
+                                <td> @c.lote </td>
+                                <td> @c.pago </td>
+
+                            </tr>
+
+
+                    }
+                
+            </tbody>
+        </table>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    </div>
+    <text> valor total dos pagamentos  @Html.Raw(ViewBag.Subtotal)</text>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

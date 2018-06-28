@@ -1,0 +1,74 @@
+﻿@model CondominioEstribo.Models.Ocorrencia
+
+@{
+    ViewBag.Title = "Detalhes Das Ocorrencias Concluídas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes Das Ocorrencias Concluídas</h2>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            <h5><b>Descrição:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Descricao)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Tipo:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Tipo)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Situação:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Situacao)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Lote:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.LoteRegistroOcorrencia)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Desfecho:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.Desfecho)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Data:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.DataOcorrencia)</h5>
+        </dd>
+
+        <dt>
+            <h5><b>Condômino:</b></h5>
+        </dt>
+
+        <dd>
+            <h5>@Html.DisplayFor(model => model.CondominoRegistroOcorrencia)</h5>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OcorrenciaId }) |
+    @Html.ActionLink("Back to List", "ListaOcorrenciaConcluida")
+</p>

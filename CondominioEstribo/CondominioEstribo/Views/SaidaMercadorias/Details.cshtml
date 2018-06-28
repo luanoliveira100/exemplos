@@ -1,0 +1,45 @@
+﻿@model CondominioEstribo.Models.SaidaMercadoria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SaidaMercadoria</h4>
+    <hr />
+    <div class="well">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.quantidade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.quantidade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.data)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.data)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.observacao)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.observacao)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SaidaMercadoriaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

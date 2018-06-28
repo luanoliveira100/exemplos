@@ -1,0 +1,169 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Proprietario>
+
+@{
+    ViewBag.Title = "ListarTodosProprietarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtProprietario").autocomplete({
+            source: '@Url.Action("GetProrprietario")'
+        });
+    });
+</script>
+
+<br />
+<br />
+
+
+@using (Html.BeginForm("ListarTodosProprietarios", "Proprietario", FormMethod.Post))
+            {
+    <p><b>Buscar por Nome</b></p>
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("lblProprietario", " insira o proprietario*", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("proprietario", null, new { id = "txtProprietario", @class = "form-control", placeholder = "Informe o proprietário" })
+            </div>
+        </div>
+
+        @*<div class="col-md-3">
+                @Html.TextBox("txtNomeProprietario", "", new { @class = "form-control", placeholder = "Informe o Nome do Proprietário", autofocus = "autofocus", tabindex = "1" })
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-warning" tabindex="2">Pesquisar</button>
+                @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+
+@if (Model != null)
+{
+    <div class="well">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LoginUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SenhaUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NovaSenhaUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StatusUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PerfilUsuario)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CPF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RG)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Logradouro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Numero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CEP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefoneCelular)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefoneComercial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlagStatus)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoginUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SenhaUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NovaSenhaUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PerfilUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Logradouro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CEP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefoneCelular)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefoneComercial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlagStatus)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UsuarioId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.UsuarioId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UsuarioId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+

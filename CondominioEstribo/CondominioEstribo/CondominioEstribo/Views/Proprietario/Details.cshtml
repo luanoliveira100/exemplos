@@ -1,0 +1,119 @@
+﻿@model CondominioEstribo.Models.Proprietario
+
+@{
+    ViewBag.Title = "Detalhes Do Proprietário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <div class="well">
+        <h2>Detalhes Do Proprietário</h2>
+
+        <br />
+        <br />
+
+        <div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <h4><b>Nome:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Nome)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>CPF:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.CPF)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>RG:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.RG)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Endereço:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Logradouro)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Número:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Numero)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>CEP:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.CEP)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Telefone Celular:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.TelefoneCelular)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Tel. Comercial:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.TelefoneComercial)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Email:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Email)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Status:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.FlagStatus)</h4>
+                </dd>
+
+                <dt>
+                    <h4><b>Observação:</b></h4>
+                </dt>
+
+                <dd>
+                    <h4>@Html.DisplayFor(model => model.Observacao)</h4>
+                </dd>
+
+            </dl>
+        </div>
+        <br />
+        <div class="form-group">
+                @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Alterar", "Edit", new { id = Model.UsuarioId }, new { @class = "btn btn-warning" })                                             
+        </div>
+    </div>
+</div>
+<br />
+<br />

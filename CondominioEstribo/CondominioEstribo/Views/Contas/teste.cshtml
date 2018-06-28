@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Proprietario>
+
+@{
+    ViewBag.Title = "teste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/ContentTeste/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css"/>
+<script src="~/Scriptteste/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="~/Scriptteste/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#txtSearch").autocomplete({
+            source:'@Url.Action("GetProprietario")'
+        })  ;
+    });
+</script>
+
+
+<div style="font-family:Arial" class="well">
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        <b> nome: </b>
+        @Html.TextBox("searchTerm" ,null, new { id="txtSearch"})
+        <input  type="submit" value="Search"/>
+    }
+<table border="1">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logradouro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefoneCelular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefoneComercial)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.FlagStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefoneCelular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefoneComercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlagStatus)
+        </td>
+       
+    </tr>
+}
+
+</table>
+</div>

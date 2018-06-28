@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CondominioEstribo.Models.CadastroVeiculoProprietario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Veículo de Proprietário</h2>
+
+<br />
+<br />
+
+@using (Html.BeginForm("Index", "CadastroVeiculoProprietario", FormMethod.Post))
+{
+    <p><b>Buscar por Placa</b></p>
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            @Html.TextBox("txtPlaca", "", new { @class = "form-control", placeholder = "Informe a Placa", autofocus = "autofocus", tabindex = "1" })
+        </div>
+        <div class="col-md-0">
+            <button type="submit" class="btn btn-primary" tabindex="2">Pesquisar</button>
+            @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+        </div>
+
+
+    </div>
+}
+
+<br />
+
+
+@*<fieldset>
+    <div class="well">*@
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nome Do Proprietário
+                    </th>
+                    <th>
+                        Placa Do Veículo
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr class="active">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeDoProprietario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlacaVeiculoProprietario)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.CadastroVeiculoProprietarioId }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Alterar", "Edit", new { id = item.CadastroVeiculoProprietarioId }, new { @class = "btn btn-warning btn-xs" })                        
+                        <button type="submit" class="btn btn-danger btn-xs" onclick="MensagemConfirma('Atenção', 'Deseja Realmente Excluir este Veículo ?', '@Url.Action("DeletarVeiculoProprietario","CadastroVeiculoProprietario", new { id = item.CadastroVeiculoProprietarioId})')">Excluir</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    @*</div>
+</fieldset>*@
+
+
+<br />
+
+@Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+
+<br />
+<br />

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CondominioEstribo.Models.Visitante>
+
+@{
+    ViewBag.Title = "Lista de Visitantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Visitantes</h2>
+
+<br />
+<br />
+
+@using (Html.BeginForm("ListaVisitante", "Relatorio", FormMethod.Post))
+{
+    <p>Pesquisar por Nome*</p>
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            @Html.TextBox("txtNome", "", new { @class = "form-control", placeholder = "aki" })
+        </div>
+        <div class="col-md-0">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+}
+
+<br />
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Nome do Visitante
+            </th>
+            <th>
+                Data de Entrada
+            </th>
+            <th>
+                Data da Saída
+            </th>
+            <th>
+                Placa Veículo Visitante
+            </th>
+            <th>
+                Lote
+            </th>
+            <th>
+                Observação
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeVisitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSaida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlacaVeiculoVisitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacao)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "Edit", new { id = item.VisitanteId }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.VisitanteId }, new { @class = "btn btn-primary btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>

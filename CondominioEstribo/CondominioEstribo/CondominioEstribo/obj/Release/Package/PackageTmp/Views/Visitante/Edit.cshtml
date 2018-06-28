@@ -1,0 +1,112 @@
+﻿@model CondominioEstribo.Models.Visitante
+
+@{
+    ViewBag.Title = "Alterar Cadastro De Visitante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+
+        <h2>Alterar Cadastro De Visitante</h2>
+
+        <br />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.VisitanteId)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeVisitante, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.NomeVisitante, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe o Nome do Vistante", required = "true", autofocus = "autofocus", tabindex = "1" } })
+                            @Html.ValidationMessageFor(model => model.NomeVisitante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PlacaVeiculoVisitante, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PlacaVeiculoVisitante, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe a Placa do Veículo", required = "true", tabindex = "4", maxlength = "8" } })
+                            @Html.ValidationMessageFor(model => model.PlacaVeiculoVisitante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-1">
+                        <input type="submit" value="Gravar" class="btn btn-success" tabindex="7" />
+                    </div>
+                    <div class="col-md-offset-4">
+                        @Html.ActionLink("Cancelar", "Index", new { area = "Index", controller = "Home" }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataEntrada, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.DataEntrada, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe a Data de Entrada", required = "true", tabindex = "2", onkeyup = "formataData(this,event)", maxlength = "10" } })
+                            @Html.ValidationMessageFor(model => model.DataEntrada, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeDoCondomino, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.NomeDoCondomino, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome do Condômino a Visitar", tabindex = "5" } })
+                            @Html.ValidationMessageFor(model => model.NomeDoCondomino, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataSaida, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.DataSaida, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe a Data de Saída", required = "true", tabindex = "3", onkeyup = "formataData(this,event)", maxlength = "10" } })
+                            @Html.ValidationMessageFor(model => model.DataSaida, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe aqui uma Observação", required = "true", tabindex = "6", } })
+                            @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+<script src="~/JS/Mascara.js" type="text/javascript"></script>
+
+@{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
